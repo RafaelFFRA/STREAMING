@@ -1,0 +1,555 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #080808;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   TOPO
+========================= */
+
+.topo {
+    width: 100%;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    background-color: #080808;
+}
+
+
+/* LOGO */
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+
+    color: #168cff;
+
+    letter-spacing: 1px;
+}
+
+
+/* VOLTAR */
+
+.btn-voltar {
+    text-decoration: none;
+
+    color: white;
+    background-color: #168cff;
+
+    padding: 10px 22px;
+
+    border-radius: 6px;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+.btn-voltar:hover {
+    background-color: #006dcc;
+    color: white;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.perfil-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 35px 20px 70px;
+}
+
+
+/* CARD PRINCIPAL */
+
+.perfil-card {
+    width: 100%;
+    max-width: 700px;
+
+    background-color: #111111;
+
+    border: 1px solid #292929;
+
+    border-radius: 12px;
+
+    padding: 35px 45px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+}
+
+
+/* TÍTULO */
+
+.perfil-card h1 {
+    text-align: center;
+
+    font-size: 28px;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   FOTO
+========================= */
+
+.foto-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 35px;
+}
+
+
+/* FOTO */
+
+.foto-perfil {
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 4px solid #168cff;
+
+    margin-bottom: 15px;
+}
+
+
+/* ALTERAR FOTO */
+
+.btn-alterar-foto {
+    border: none;
+
+    background-color: transparent;
+
+    color: #168cff;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn-alterar-foto:hover {
+    color: #5db2ff;
+}
+
+
+/* =========================
+   CAMPOS
+========================= */
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 15px;
+
+    color: #cccccc;
+}
+
+.campo input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 15px;
+
+    border: 1px solid #333;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    background-color: #1b1b1b;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+.campo input:focus {
+    border-color: #168cff;
+}
+
+
+/* =========================
+   SALVAR
+========================= */
+
+.btn-salvar {
+    width: 100%;
+
+    border: none;
+
+    background-color: #168cff;
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    margin-top: 5px;
+}
+
+.btn-salvar:hover {
+    background-color: #006dcc;
+}
+
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.secao {
+    border-top: 1px solid #292929;
+
+    margin-top: 35px;
+
+    padding-top: 30px;
+}
+
+.secao h2 {
+    font-size: 20px;
+
+    margin-bottom: 22px;
+}
+
+.secao h2 i {
+    color: #168cff;
+
+    margin-right: 7px;
+}
+
+
+/* =========================
+   ASSINATURA
+========================= */
+
+.assinatura {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background-color: #191919;
+
+    border-radius: 8px;
+
+    padding: 20px;
+
+    margin-bottom: 15px;
+}
+
+.informacao-assinatura {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.titulo-plano {
+    color: #999;
+
+    font-size: 13px;
+}
+
+.informacao-assinatura strong {
+    font-size: 17px;
+}
+
+
+/* GERENCIAR */
+
+.btn-gerenciar {
+    width: 100%;
+
+    background-color: #242424;
+
+    color: white;
+
+    border: 1px solid #444;
+
+    padding: 11px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn-gerenciar:hover {
+    background-color: #303030;
+}
+
+
+/* =========================
+   CONTA
+========================= */
+
+.conta {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* SAIR */
+
+.btn-sair {
+    width: 100%;
+
+    border: none;
+
+    background-color: #242424;
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    margin-bottom: 15px;
+}
+
+.btn-sair:hover {
+    background-color: #333;
+}
+
+
+/* CANCELAR */
+
+.btn-cancelar {
+    width: 100%;
+
+    border: none;
+
+    background-color: transparent;
+
+    color: #e05252;
+
+    padding: 10px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn-cancelar:hover {
+    background-color: #211010;
+
+    color: #ff6b6b;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-orion {
+    background-color: #151515;
+
+    color: white;
+
+    border: 1px solid #333;
+}
+
+.modal-orion .modal-header {
+    border-bottom: 1px solid #333;
+}
+
+.modal-orion .modal-footer {
+    border-top: 1px solid #333;
+}
+
+.texto-aviso {
+    color: #999;
+
+    font-size: 14px;
+}
+
+
+/* BOTÃO VOLTAR DO MODAL */
+
+.btn-voltar-modal {
+    border: none;
+
+    background-color: #333;
+
+    color: white;
+
+    padding: 9px 17px;
+
+    border-radius: 5px;
+}
+
+.btn-voltar-modal:hover {
+    background-color: #444;
+}
+
+
+/* CONFIRMAR */
+
+.btn-confirmar-cancelamento {
+    border: none;
+
+    background-color: #c03939;
+
+    color: white;
+
+    padding: 9px 17px;
+
+    border-radius: 5px;
+}
+
+.btn-confirmar-cancelamento:hover {
+    background-color: #a93232;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 768px) {
+
+    .topo {
+        height: 70px;
+
+        padding: 0 4%;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .btn-voltar {
+        padding: 8px 16px;
+
+        font-size: 14px;
+    }
+
+    .perfil-container {
+        padding: 25px 15px 50px;
+    }
+
+    .perfil-card {
+        padding: 30px 25px;
+    }
+
+}
+
+
+/* CELULAR */
+
+@media (max-width: 480px) {
+
+    .topo {
+        height: 65px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .btn-voltar {
+        padding: 7px 12px;
+
+        font-size: 13px;
+    }
+
+    .perfil-card {
+        padding: 25px 18px;
+
+        border-radius: 9px;
+    }
+
+    .perfil-card h1 {
+        font-size: 24px;
+
+        margin-bottom: 30px;
+    }
+
+    .foto-perfil {
+        width: 120px;
+        height: 120px;
+    }
+
+    .assinatura {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .informacao-assinatura {
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        align-items: center;
+    }
+
+    .informacao-assinatura strong {
+        font-size: 15px;
+    }
+
+    .titulo-plano {
+        font-size: 13px;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+    }
+
+    .btn-voltar-modal,
+    .btn-confirmar-cancelamento {
+        width: 100%;
+    }
+
+}

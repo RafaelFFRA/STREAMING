@@ -1,0 +1,476 @@
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: #111111;
+    overflow-x: hidden;
+}
+
+body {
+    color: white;
+}
+
+
+/* ==============================
+   NAVBAR
+============================== */
+
+.navbar-orion {
+    width: 100%;
+    min-height: 70px;
+    padding: 0 30px;
+    background-color: #111111 !important;
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 24px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+
+/* MENU */
+
+.menu-orion {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu-orion .nav-link {
+    color: #999999;
+    font-size: 16px;
+    padding: 10px 8px;
+    white-space: nowrap;
+}
+
+.menu-orion .nav-link:hover {
+    color: white;
+}
+
+
+/* BOTÕES */
+
+.nav-buttons {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    font-size: 20px;
+    color: white !important;
+}
+
+.nav-icon:hover {
+    background-color: #292929 !important;
+}
+
+
+/* ==============================
+   BANNER
+============================== */
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 590px;
+    overflow: hidden;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    filter: brightness(45%);
+}
+
+
+/* GRADIENTE */
+
+.banner::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0)
+    );
+
+    pointer-events: none;
+}
+
+
+/* INFORMAÇÕES */
+
+.banner-info {
+    position: absolute;
+
+    z-index: 2;
+
+    left: 8%;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    max-width: 600px;
+}
+
+.banner-info h1 {
+    font-size: 64px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.banner-info p {
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.banner-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.banner-buttons .btn {
+    white-space: nowrap;
+}
+
+
+/* ==============================
+   SEÇÕES
+============================== */
+
+.filmes-section {
+    width: 100%;
+    padding: 0 45px;
+    margin-top: 55px;
+}
+
+.filmes-section h3 {
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+
+/* ==============================
+   LISTA DE FILMES
+============================== */
+
+.lista-filmes {
+    width: 100%;
+
+    display: flex;
+    gap: 18px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding-bottom: 10px;
+
+    scrollbar-width: none;
+}
+
+.lista-filmes::-webkit-scrollbar {
+    display: none;
+}
+
+.lista-filmes img {
+    width: 220px;
+    height: 320px;
+
+    flex: 0 0 auto;
+
+    object-fit: cover;
+
+    border-radius: 5px;
+
+    transition: transform 0.2s ease;
+}
+
+.lista-filmes img:hover {
+    transform: scale(1.04);
+}
+
+
+/* ==============================
+   ÚLTIMA SEÇÃO
+============================== */
+
+.ultima-section {
+    padding-bottom: 50px;
+}
+
+
+/* ==============================
+   TABLET
+============================== */
+
+@media (max-width: 900px) {
+
+    .navbar-orion {
+        padding: 0 20px;
+    }
+
+    .navbar-container {
+        gap: 15px;
+    }
+
+    .navbar-brand {
+        font-size: 21px;
+    }
+
+    .menu-orion {
+        gap: 0;
+    }
+
+    .menu-orion .nav-link {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+
+    .banner {
+        height: 500px;
+    }
+
+    .banner-info {
+        left: 6%;
+    }
+
+    .banner-info h1 {
+        font-size: 52px;
+    }
+
+    .banner-info p {
+        font-size: 19px;
+    }
+
+    .lista-filmes img {
+        width: 190px;
+        height: 275px;
+    }
+
+}
+
+
+/* ==============================
+   CELULAR
+============================== */
+
+@media (max-width: 600px) {
+
+    /* NAVBAR */
+
+    .navbar-orion {
+        min-height: 62px;
+        padding: 0 10px;
+    }
+
+    .navbar-container {
+        gap: 5px;
+    }
+
+    .navbar-brand {
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+    .menu-orion {
+        flex: 1;
+        justify-content: center;
+        gap: 0;
+        min-width: 0;
+    }
+
+    .menu-orion .nav-link {
+        font-size: 12px;
+        padding: 8px 4px;
+    }
+
+    .nav-buttons {
+        flex-shrink: 0;
+        gap: 2px;
+    }
+
+    .nav-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 17px;
+        padding: 0;
+    }
+
+
+    /* BANNER */
+
+    .banner {
+        height: 480px;
+    }
+
+    .banner-img {
+        object-position: center;
+    }
+
+    .banner::after {
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.15)
+        );
+    }
+
+    .banner-info {
+        left: 20px;
+        right: 20px;
+        top: auto;
+        bottom: 45px;
+        transform: none;
+
+        max-width: none;
+
+        text-align: center;
+    }
+
+    .banner-info h1 {
+        font-size: 42px;
+        margin-bottom: 8px;
+    }
+
+    .banner-info p {
+        font-size: 16px;
+        margin-bottom: 18px;
+    }
+
+    .banner-buttons {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .banner-buttons .btn {
+        font-size: 15px;
+        padding: 9px 13px;
+    }
+
+
+    /* SEÇÕES */
+
+    .filmes-section {
+        padding: 0 18px;
+        margin-top: 35px;
+    }
+
+    .filmes-section h3 {
+        font-size: 21px;
+        margin-bottom: 14px;
+    }
+
+
+    /* CARDS */
+
+    .lista-filmes {
+        gap: 12px;
+        padding-right: 18px;
+    }
+
+    .lista-filmes img {
+        width: 145px;
+        height: 215px;
+
+        border-radius: 5px;
+    }
+
+}
+
+
+/* ==============================
+   CELULARES PEQUENOS
+============================== */
+
+@media (max-width: 400px) {
+
+    .navbar-orion {
+        padding: 0 7px;
+    }
+
+    .navbar-brand {
+        font-size: 16px;
+    }
+
+    .menu-orion .nav-link {
+        font-size: 10px;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .nav-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+    }
+
+    .banner {
+        height: 430px;
+    }
+
+    .banner-info {
+        bottom: 30px;
+    }
+
+    .banner-info h1 {
+        font-size: 34px;
+    }
+
+    .banner-info p {
+        font-size: 14px;
+    }
+
+    .banner-buttons .btn {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .filmes-section {
+        padding: 0 14px;
+    }
+
+    .lista-filmes img {
+        width: 130px;
+        height: 195px;
+    }
+
+}

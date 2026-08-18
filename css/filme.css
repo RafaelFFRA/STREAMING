@@ -1,0 +1,629 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #080808;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   TOPO
+========================= */
+
+.topo {
+    width: 100%;
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    background-color: #080808;
+}
+
+
+/* LOGO */
+
+.logo {
+    color: #168cff;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+/* BOTÃO SAIR */
+
+.btn-voltar {
+    text-decoration: none;
+
+    color: white;
+    background-color: #242424;
+
+    padding: 10px 22px;
+
+    border-radius: 6px;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+.btn-voltar:hover {
+    background-color: #333;
+    color: white;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.formulario-container {
+    width: 100%;
+
+    padding-top: 45px;
+    padding-bottom: 70px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.formulario-card {
+    width: 100%;
+    max-width: 850px;
+
+    margin: auto;
+
+    background-color: #111111;
+
+    border: 1px solid #292929;
+
+    border-radius: 12px;
+
+    padding: 45px 50px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.formulario-card h1 {
+    text-align: center;
+
+    font-size: 30px;
+
+    margin-bottom: 12px;
+}
+
+
+/* DESCRIÇÃO */
+
+.descricao {
+    text-align: center;
+
+    color: #999;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 45px;
+}
+
+
+/* =========================
+   CAMPOS
+========================= */
+
+.campo {
+    margin-bottom: 30px;
+}
+
+
+/* LABEL */
+
+.campo label {
+    display: block;
+
+    color: #ddd;
+
+    font-size: 15px;
+
+    margin-bottom: 10px;
+}
+
+
+/* INPUTS */
+
+.campo input,
+.campo textarea,
+.campo select {
+    width: 100%;
+
+    background-color: #1b1b1b;
+
+    color: white;
+
+    border: 1px solid #333;
+
+    border-radius: 6px;
+
+    padding: 13px 14px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+/* ALTURA DOS INPUTS */
+
+.campo input,
+.campo select {
+    min-height: 48px;
+}
+
+
+/* TEXTAREA */
+
+.campo textarea {
+    min-height: 130px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+/* PLACEHOLDER */
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #777;
+}
+
+
+/* FOCO */
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+    background-color: #1b1b1b;
+
+    color: white;
+
+    border-color: #168cff;
+
+    box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
+}
+
+
+/* SELECT */
+
+.campo select option {
+    background-color: #1b1b1b;
+
+    color: white;
+}
+
+
+/* =========================
+   UPLOAD
+========================= */
+
+.upload-box {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+
+    min-height: 75px;
+
+    padding: 18px;
+
+    background-color: #1b1b1b;
+
+    border: 1px dashed #444;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.upload-box:hover {
+    border-color: #168cff;
+
+    background-color: #202020;
+}
+
+
+/* ÍCONE */
+
+.upload-box i {
+    color: #168cff;
+
+    font-size: 27px;
+
+    flex-shrink: 0;
+}
+
+
+/* TEXTO */
+
+.upload-box span {
+    color: #bbb;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+/* INPUT */
+
+.upload-box input {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+
+/* TEXTO PEQUENO */
+
+.campo small {
+    display: block;
+
+    margin-top: 9px;
+
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+.btn-enviar {
+    width: 100%;
+
+    border: none;
+
+    background-color: #168cff;
+
+    color: white;
+
+    padding: 14px;
+
+    border-radius: 6px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    margin-top: 10px;
+}
+
+.btn-enviar:hover {
+    background-color: #006dcc;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+
+    .topo {
+        min-height: 70px;
+
+        padding: 0 4%;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .btn-voltar {
+        padding: 8px 16px;
+
+        font-size: 14px;
+    }
+
+
+    .formulario-container {
+        padding: 35px 18px 55px;
+    }
+
+
+    .formulario-card {
+        max-width: 650px;
+
+        padding: 35px 30px;
+    }
+
+
+    .formulario-card h1 {
+        font-size: 27px;
+    }
+
+
+    .descricao {
+        margin-bottom: 40px;
+    }
+
+
+    .campo {
+        margin-bottom: 28px;
+    }
+
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 480px) {
+
+    .topo {
+        min-height: 65px;
+
+        padding: 0 18px;
+    }
+
+
+    .logo {
+        font-size: 20px;
+    }
+
+
+    .btn-voltar {
+        padding: 7px 12px;
+
+        font-size: 13px;
+    }
+
+
+    .formulario-container {
+        padding: 25px 12px 45px;
+    }
+
+
+    .formulario-card {
+        padding: 30px 20px;
+
+        border-radius: 9px;
+    }
+
+
+    .formulario-card h1 {
+        font-size: 23px;
+
+        margin-bottom: 10px;
+    }
+
+
+    .descricao {
+        font-size: 13px;
+
+        line-height: 1.6;
+
+        margin-bottom: 35px;
+    }
+
+
+    /* CAMPOS */
+
+    .campo {
+        margin-bottom: 26px;
+    }
+
+
+    .campo label {
+        font-size: 14px;
+
+        margin-bottom: 9px;
+    }
+
+
+    .campo input,
+    .campo textarea,
+    .campo select {
+        font-size: 14px;
+
+        padding: 12px;
+    }
+
+
+    .campo input,
+    .campo select {
+        min-height: 47px;
+    }
+
+
+    .campo textarea {
+        min-height: 120px;
+    }
+
+
+    /* UPLOAD */
+
+    .upload-box {
+        min-height: 70px;
+
+        padding: 14px;
+
+        gap: 12px;
+    }
+
+
+    .upload-box i {
+        font-size: 23px;
+    }
+
+
+    .upload-box span {
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+
+    .campo small {
+        font-size: 11px;
+
+        margin-top: 8px;
+    }
+
+
+    /* BOTÃO */
+
+    .btn-enviar {
+        padding: 13px;
+
+        font-size: 15px;
+
+        margin-top: 5px;
+    }
+
+}
+
+
+/* =========================
+   CELULARES MUITO PEQUENOS
+========================= */
+
+@media (max-width: 360px) {
+
+    .topo {
+        padding: 0 12px;
+    }
+
+
+    .logo {
+        font-size: 18px;
+    }
+
+
+    .btn-voltar {
+        padding: 6px 10px;
+
+        font-size: 12px;
+    }
+
+
+    .formulario-container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    .formulario-card {
+        padding: 25px 15px;
+    }
+
+
+    .formulario-card h1 {
+        font-size: 21px;
+    }
+
+
+    .descricao {
+        font-size: 12px;
+    }
+
+
+    .campo {
+        margin-bottom: 24px;
+    }
+
+
+    .campo input,
+    .campo textarea,
+    .campo select {
+        font-size: 13px;
+    }
+
+
+    .upload-box span {
+        font-size: 12px;
+    }
+
+}
+
+.info-box {
+    background-color: #1e1e1e;
+    border-radius: 15px;
+
+    padding: 28px 25px;
+
+    margin-bottom: 24px;
+
+    width: 100%;
+}
+
+.info-box:last-child {
+    margin-bottom: 0;
+}
+
+.card-orion {
+    background-color: #1e1e1e;
+    color: white;
+
+    border-radius: 15px;
+
+    padding: 28px 25px;
+
+    margin-bottom: 24px;
+
+    width: 100%;
+}
+
+.card-orion h2,
+.card-orion h3 {
+    margin-bottom: 18px;
+}
+
+.card-orion p {
+    margin-bottom: 0;
+}
