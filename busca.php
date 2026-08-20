@@ -43,6 +43,7 @@
                     type="text"
                     placeholder="Pesquisar filmes e séries..."
                     class="input-busca"
+                    name="pesquisa"
                 >
 
                 <button class="btn-pesquisar">

@@ -138,7 +138,7 @@
                         required
                     >
 
-                        <option value="" selected disabled>
+                        <option value="" selected disabled >
                             Selecione o gênero
                         </option>
 
@@ -176,7 +176,11 @@
 
                         <option value="outro">
                             Outro
+             <!--    OUTRO?? -->
+                          
                         </option>
+
+                 
 
                     </select>
 
@@ -224,6 +228,8 @@
                         <option value="18">
                             18 anos
                         </option>
+
+                         <!--    COMO PROSSEGUIR COM OPTION -->
 
                     </select>
 

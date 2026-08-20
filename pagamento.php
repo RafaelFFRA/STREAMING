@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -12,7 +11,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-
         body {
             background: linear-gradient(135deg, #141414, #1f1f1f);
             min-height: 100vh;
@@ -98,316 +96,323 @@
             justify-content: space-between;
             margin-bottom: 10px;
         }
-
     </style>
 
 </head>
 
 <body>
 
-<div class="container py-5">
+    <div class="container py-5">
 
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
 
-        <div class="col-12 col-md-10 col-lg-8">
+            <div class="col-12 col-md-10 col-lg-8">
 
-            <div class="card pagamento-card shadow-lg p-4 p-md-5">
+                <div class="card pagamento-card shadow-lg p-4 p-md-5">
 
-                <!-- LOGO -->
+                    <!-- LOGO -->
 
-                <div class="text-center mb-4">
+                    <div class="text-center mb-4">
 
-                    <div class="logo">
-                        ORION TV
-                    </div>
+                        <div class="logo">
+                            ORION TV
+                        </div>
 
-                    <p class="text-secondary">
-                        Finalize sua assinatura
-                    </p>
+                        <p class="text-secondary">
+                            Finalize sua assinatura
+                        </p>
 
-                </div>
-
-
-                <form>
-
-
-                    <!-- ESCOLHA DO PLANO -->
-
-                    <div class="titulo-secao">
-                        Escolha seu plano
                     </div>
 
 
-                    <div class="row g-3 mb-4">
+                    <form method="$_POST" action="assinatura.php">
 
-                        <!-- PLANO MENSAL -->
 
-                        <div class="col-md-6">
+                        <!-- ESCOLHA DO PLANO -->
 
-                            <div class="plano plano-selecionado">
+                        <div class="titulo-secao">
+                            Escolha seu plano
+                        </div>
 
-                                <div class="d-flex justify-content-between">
 
-                                    <div>
+                        <div class="row g-3 mb-4">
 
-                                        <h5>
-                                            Plano Mensal
-                                        </h5>
+                            <!-- PLANO MENSAL -->
 
-                                        <p class="text-secondary mb-0">
-                                            Cobrança mensal
-                                        </p>
+                            <div class="col-md-6">
+
+                                <div class="plano plano-selecionado">
+
+                                    <div class="d-flex justify-content-between">
+
+                                        <div>
+
+                                            <h5>
+                                                Plano Mensal
+                                            </h5>
+
+                                            <p class="text-secondary mb-0">
+                                                Cobrança mensal
+                                            </p>
+
+                                        </div>
+
+                                        <input
+                                            type="radio"
+                                            name="plano"
+                                            value="mensal"
+                                            checked
+                                            require>
+
+                                        <!--  COMO COLOCAR O NAME? É RADIO -->
 
                                     </div>
 
-                                    <input
-                                        type="radio"
-                                        name="plano"
-                                        value="mensal"
-                                        checked
-                                    >
+                                    <div class="preco mt-3">
+                                        R$ 19,90
+                                    </div>
+
+                                    <small class="text-secondary">
+                                        por mês
+                                    </small>
 
                                 </div>
 
-                                <div class="preco mt-3">
-                                    R$ 19,90
-                                </div>
+                            </div>
 
-                                <small class="text-secondary">
-                                    por mês
-                                </small>
+
+                            <!-- PLANO ANUAL -->
+
+                            <div class="col-md-6">
+
+                                <div class="plano">
+
+                                    <div class="d-flex justify-content-between">
+
+                                        <div>
+
+                                            <h5>
+                                                Plano Anual
+                                            </h5>
+
+                                            <p class="text-secondary mb-0">
+                                                Cobrança anual
+                                            </p>
+
+                                        </div>
+
+                                        <input
+                                            type="radio"
+                                            name="plano"
+                                            value="anual">
+
+                                        <!--  COMO COLOCAR O NAME? É RADIO -->
+
+                                    </div>
+
+                                    <div class="preco mt-3">
+                                        R$ 199,90
+                                    </div>
+
+                                    <small class="text-secondary">
+                                        por ano
+                                    </small>
+
+                                </div>
 
                             </div>
 
                         </div>
 
 
-                        <!-- PLANO ANUAL -->
+                        <!-- FORMA DE PAGAMENTO -->
 
-                        <div class="col-md-6">
-
-                            <div class="plano">
-
-                                <div class="d-flex justify-content-between">
-
-                                    <div>
-
-                                        <h5>
-                                            Plano Anual
-                                        </h5>
-
-                                        <p class="text-secondary mb-0">
-                                            Cobrança anual
-                                        </p>
-
-                                    </div>
-
-                                    <input
-                                        type="radio"
-                                        name="plano"
-                                        value="anual"
-                                    >
-
-                                </div>
-
-                                <div class="preco mt-3">
-                                    R$ 199,90
-                                </div>
-
-                                <small class="text-secondary">
-                                    por ano
-                                </small>
-
-                            </div>
-
+                        <div class="titulo-secao mt-4">
+                            Forma de pagamento
                         </div>
 
-                    </div>
 
-
-                    <!-- FORMA DE PAGAMENTO -->
-
-                    <div class="titulo-secao mt-4">
-                        Forma de pagamento
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Método
-                        </label>
-
-                        <select
-                            class="form-select"
-                            name="forma_pagamento"
-                        >
-
-                            <option selected disabled>
-                                Escolha uma forma de pagamento
-                            </option>
-
-                            <option value="pix">
-                                PIX
-                            </option>
-
-                            <option value="cartao">
-                                Cartão de crédito
-                            </option>
-
-                            <option value="boleto">
-                                Boleto
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- DADOS DO CARTÃO -->
-
-                    <div class="titulo-secao mt-4">
-                        Dados do pagamento
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Nome no cartão
-                        </label>
-
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Nome presente no cartão"
-                            name="nome_cartao"
-                        >
-
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Número do cartão
-                        </label>
-
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="0000 0000 0000 0000"
-                            name="numero_cartao"
-                        >
-
-                    </div>
-
-
-                    <div class="row">
-
-                        <div class="col-md-6 mb-3">
+                        <div class="mb-3">
 
                             <label class="form-label">
-                                Validade
+                                Método
+                            </label>
+
+                            <select
+                                class="form-select"
+                                name="forma_pagamento"
+                                required>
+
+                                <option selected disabled>
+                                    Escolha uma forma de pagamento
+                                </option>
+
+                                <option value="pix">
+                                    PIX
+                                </option>
+
+                                <option value="cartao">
+                                    Cartão de crédito
+                                </option>
+
+                                <option value="boleto">
+                                    Boleto
+                                </option>
+
+                                <!--  COMO COLOCAR O NAME? É OPTION -->
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- DADOS DO CARTÃO -->
+
+                        <div class="titulo-secao mt-4">
+                            Dados do pagamento
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Nome no cartão
                             </label>
 
                             <input
                                 type="text"
                                 class="form-control"
-                                placeholder="MM/AA"
-                                name="validade"
-                            >
+                                placeholder="Nome presente no cartão"
+                                name="nome_cartao"
+                                required>
 
                         </div>
 
 
-                        <div class="col-md-6 mb-3">
+                        <div class="mb-3">
 
                             <label class="form-label">
-                                CVV
+                                Número do cartão
                             </label>
 
                             <input
-                                type="password"
+                                type="text"
                                 class="form-control"
-                                placeholder="000"
-                                name="cvv"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- RESUMO -->
-
-                    <div class="titulo-secao mt-4">
-                        Resumo do pedido
-                    </div>
-
-
-                    <div class="resumo mb-4">
-
-                        <div class="linha-resumo">
-
-                            <span>
-                                Plano
-                            </span>
-
-                            <span>
-                                Mensal
-                            </span>
+                                placeholder="0000 0000 0000 0000"
+                                name="numero_cartao"
+                                required>
 
                         </div>
 
 
-                        <div class="linha-resumo">
+                        <div class="row">
 
-                            <span>
-                                Valor
-                            </span>
+                            <div class="col-md-6 mb-3">
 
-                            <span>
-                                R$ 19,90
-                            </span>
+                                <label class="form-label">
+                                    Validade
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="MM/AA"
+                                    name="validade"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    CVV
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    placeholder="000"
+                                    name="cvv"
+                                    required>
+
+                            </div>
 
                         </div>
 
 
-                        <hr>
+                        <!-- RESUMO -->
+
+                        <div class="titulo-secao mt-4">
+                            Resumo do pedido
+                        </div>
 
 
-                        <div class="linha-resumo fw-bold">
+                        <div class="resumo mb-4">
 
-                            <span>
-                                Total
-                            </span>
+                            <div class="linha-resumo">
 
-                            <span class="text-primary">
-                                R$ 19,90
-                            </span>
+                                <span>
+                                    Plano
+                                </span>
+
+                                <span>
+                                    Mensal
+                                </span>
+
+                            </div>
+
+
+                            <div class="linha-resumo">
+
+                                <span>
+                                    Valor
+                                </span>
+
+                                <span>
+                                    R$ 19,90
+                                </span>
+
+                            </div>
+
+
+                            <hr>
+
+
+                            <div class="linha-resumo fw-bold">
+
+                                <span>
+                                    Total
+                                </span>
+
+                                <span class="text-primary">
+                                    R$ 19,90
+                                </span>
+
+                            </div>
 
                         </div>
 
-                    </div>
+
+                        <!-- BOTÃO -->
+
+                        <a href="perfil.php" class="btn btn-primary w-100 py-2">
+                            Finalizar pagamento
+                        </a>
+
+                        <button class="btn btn-primary w-100 py-2" type="submit" name="finalizar_assinatura"></button>
 
 
-                    <!-- BOTÃO -->
-
-                 <a href="perfil.php" class="btn btn-primary w-100 py-2">
-    Finalizar pagamento
-</a>
-
-
-                    <a
-                        href="cadastro.php"
-                        class="btn btn-outline-secondary w-100 mt-2"
-                    >
-                        Voltar
-                    </a>
+                        <a
+                            href="cadastro.php"
+                            class="btn btn-outline-secondary w-100 mt-2">
+                            Voltar
+                        </a>
 
 
-                </form>
+                    </form>
+
+                </div>
 
             </div>
 
@@ -415,12 +420,7 @@
 
     </div>
 
-</div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
-
-

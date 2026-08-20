@@ -11,11 +11,9 @@
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+        rel="stylesheet">
 
     <style>
-
         body {
             background: linear-gradient(135deg, #141414, #1f1f1f);
             min-height: 100vh;
@@ -66,7 +64,6 @@
         .form-label {
             color: #ddd;
         }
-
     </style>
 
 </head>
@@ -112,11 +109,13 @@
                             Nome
                         </label>
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Digite seu nome"
-                        >
+                        <form action="contratar_assinatura.php" method="POST">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Digite seu nome"
+                                required
+                                name="nome">
 
                     </div>
 
@@ -133,7 +132,8 @@
                                 type="text"
                                 class="form-control"
                                 placeholder="Digite seu CPF"
-                            >
+                                required
+                                name="cpf">
 
                         </div>
 
@@ -147,7 +147,8 @@
                             <input
                                 type="date"
                                 class="form-control"
-                            >
+                                required
+                                name="aniversario">
 
                         </div>
 
@@ -171,7 +172,8 @@
                             type="email"
                             class="form-control"
                             placeholder="Digite seu email"
-                        >
+                            required
+                            name="email">
 
                     </div>
 
@@ -186,7 +188,8 @@
                             type="password"
                             class="form-control"
                             placeholder="Digite sua senha"
-                        >
+                            required
+                            name="senha">
 
                     </div>
 
@@ -204,20 +207,22 @@
                             Tipo de assinatura
                         </label>
 
-                        <select class="form-select">
+                        <select class="form-select" name="plano" required>
 
                             <option selected disabled>
                                 Escolha seu plano
                             </option>
 
-                            <option>
+                            <option value="mensal">
                                 Mensal
                             </option>
 
-                            <option>
+                            <option value="anual">
                                 Anual
                             </option>
 
+                            <!-- COLOCAR REQUIRED E NAME? -->
+                    
                         </select>
 
                     </div>
@@ -234,7 +239,10 @@
                             <input
                                 type="date"
                                 class="form-control"
-                            >
+                                required
+                                name="data_inicio">
+
+                            <!-- UM MÊS OU ANO DE DIFERENÇA -->
 
                         </div>
 
@@ -248,25 +256,30 @@
                             <input
                                 type="date"
                                 class="form-control"
-                            >
+                                required
+                                name="data_fim">
 
                         </div>
 
                     </div>
 
 
-                   
+
 
 
                     <!-- BOTÃO -->
 
-                    <a
+                    <!--  <a
                         href="pagamento.php"
                         class="btn btn-primary w-100 py-2"
                     >
                         Cadastrar
-                    </a>
+                    </a> -->
 
+                    <button type="submit" class="btn btn-primary w-100 py-2" name="cadastrar">
+                        Cadastrar
+                    </button>
+                    </form>
 
                 </div>
 
@@ -283,6 +296,3 @@
 
 
 </body>
-
-
-

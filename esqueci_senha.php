@@ -50,12 +50,13 @@
                         class="form-control"
                         placeholder="Digite seu e-mail"
                         required
+                        name="email"
                     >
 
                 </div>
 
 
-                <button type="submit" class="btn-enviar">
+                <button type="submit" class="btn-enviar" name="instrucoes_esqueci_senha">
                     Enviar instruções
                 </button>
 
