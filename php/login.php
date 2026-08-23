@@ -1,34 +1,85 @@
 <?php
 
-$conn = new mysqli($host, $user, $pass, $db);
-if ($conexao->connect_error) {
-    die("Erro na conexão: " . $conexao->connect_error);
-}
-$email = $_POST["email"];
-$senha_digitada = $_POST["senha"];
+require_once(__DIR__ . "/conexao.php");
+require_once(__DIR__ . "/../includes/alerta.php");
 
-$sql = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha_digitada'";
 
-$resultado = $conexao->query($sql);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-if ($resultado->num_rows > 0) {
-    $usuario = $resultado->fetch_assoc();
-    if ($usuario["tipo_usuario"] == "Administrador") {
+    $email = trim($_POST["email"]);
+    $senha_digitada = $_POST["senha"];
 
-        header("Location: tela_inicial_admin.php");
 
-    } elseif ($usuario["tipo_usuario"] == "Distribuidor") {
+    // Procura o usuário pelo e-mail
+    $sql = "SELECT * FROM usuario WHERE email = ?";
 
-        header("Location: enviar_filme.php");
+    $stmt = mysqli_prepare($conn, $sql);
 
-    } else {
-        header("Location: tela_inicial.php");
+    if (!$stmt) {
+
+        mostrarAlerta("Erro ao consultar o banco de dados.");
+
+        exit;
     }
 
-    exit();
+
+    mysqli_stmt_bind_param(
+        $stmt,
+        "s",
+        $email
+    );
+
+    mysqli_stmt_execute($stmt);
+
+    $resultado = mysqli_stmt_get_result($stmt);
+
+
+    // Verifica se o e-mail existe
+    if (mysqli_num_rows($resultado) === 0) {
+
+        mostrarAlerta("E-mail ou senha incorretos.");
+
+        exit;
+    }
+
+
+    $usuario = mysqli_fetch_assoc($resultado);
+
+
+    // Verifica a senha
+    if ($senha_digitada !== $usuario["senha"]) {
+
+        mostrarAlerta("E-mail ou senha incorretos.");
+
+        exit;
+    }
+
+
+    // Identifica o tipo de usuário
+    if ($usuario["tipo_usuario"] === "Administrador") {
+
+        header("Location: ../tela_inicial_admin.php");
+
+    } elseif ($usuario["tipo_usuario"] === "Distribuidor") {
+
+        header("Location: ../enviar_filme.php");
+
+    } else {
+
+        header("Location: ../tela_inicial.php");
+    }
+
+
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+
+    exit;
 
 } else {
 
-    echo "Email ou senha incorretos.";
+    header("Location: ../index.php");
+
+    exit;
 }
-$conexao->close();
+
+?>

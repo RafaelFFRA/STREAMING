@@ -69,7 +69,11 @@
 </head>
 
 
+
 <body>
+
+
+
 
 
     <div class="container py-5">
@@ -96,189 +100,166 @@
                     </div>
 
 
-                    <!-- DADOS PESSOAIS -->
+                    <!-- FORMULÁRIO -->
 
-                    <div class="titulo-secao">
-                        Dados pessoais
-                    </div>
+                    <form action="php/cadastro.php" method="POST">
 
 
-                    <div class="mb-3">
+                        <!-- DADOS PESSOAIS -->
 
-                        <label class="form-label">
-                            Nome
-                        </label>
+                        <div class="titulo-secao">
+                            Dados pessoais
+                        </div>
 
-                        <form action="contratar_assinatura.php" method="POST">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Nome
+                            </label>
+
                             <input
                                 type="text"
                                 class="form-control"
                                 placeholder="Digite seu nome"
                                 required
-                                name="nome">
-
-                    </div>
-
-
-                    <div class="row">
-
-                        <div class="col-md-6 mb-3">
-
-                            <label class="form-label">
-                                CPF
-                            </label>
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Digite seu CPF"
-                                required
-                                name="cpf">
+                                name="nome"
+                                >
+                               
 
                         </div>
 
 
-                        <div class="col-md-6 mb-3">
+                        <div class="row">
 
-                            <label class="form-label">
-                                Data de nascimento
-                            </label>
+                            <div class="col-md-6 mb-3">
 
-                            <input
-                                type="date"
-                                class="form-control"
-                                required
-                                name="aniversario">
+                                <label class="form-label">
+                                    CPF
+                                </label>
 
-                        </div>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Digite seu CPF"
+                                    required
+                                    name="cpf"
+                                    maxlenght = "14"
+                                    id="cpf">
 
-                    </div>
-
-
-                    <!-- DADOS DA CONTA -->
-
-                    <div class="titulo-secao mt-4">
-                        Dados da conta
-                    </div>
+                            </div>
 
 
-                    <div class="mb-3">
+                            <div class="col-md-6 mb-3">
 
-                        <label class="form-label">
-                            Email
-                        </label>
+                                <label class="form-label">
+                                    Data de nascimento
+                                </label>
 
-                        <input
-                            type="email"
-                            class="form-control"
-                            placeholder="Digite seu email"
-                            required
-                            name="email">
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    required
+                                    name="aniversario"
+                                    maxlenght="8">
 
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Senha
-                        </label>
-
-                        <input
-                            type="password"
-                            class="form-control"
-                            placeholder="Digite sua senha"
-                            required
-                            name="senha">
-
-                    </div>
-
-
-                    <!-- ASSINATURA -->
-
-                    <div class="titulo-secao mt-4">
-                        Assinatura
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Tipo de assinatura
-                        </label>
-
-                        <select class="form-select" name="plano" required>
-
-                            <option selected disabled>
-                                Escolha seu plano
-                            </option>
-
-                            <option value="mensal">
-                                Mensal
-                            </option>
-
-                            <option value="anual">
-                                Anual
-                            </option>
-
-                            <!-- COLOCAR REQUIRED E NAME? -->
-                    
-                        </select>
-
-                    </div>
-
-
-                    <div class="row">
-
-                        <div class="col-md-6 mb-3">
-
-                            <label class="form-label">
-                                Início da assinatura
-                            </label>
-
-                            <input
-                                type="date"
-                                class="form-control"
-                                required
-                                name="data_inicio">
-
-                            <!-- UM MÊS OU ANO DE DIFERENÇA -->
+                            </div>
 
                         </div>
 
 
-                        <div class="col-md-6 mb-3">
+                        <!-- DADOS DA CONTA -->
+
+                        <div class="titulo-secao mt-4">
+                            Dados da conta
+                        </div>
+
+
+                        <div class="mb-3">
 
                             <label class="form-label">
-                                Fim da assinatura
+                                Email
                             </label>
 
                             <input
-                                type="date"
+                                type="email"
                                 class="form-control"
+                                placeholder="Digite seu email"
                                 required
-                                name="data_fim">
+                                name="email">
 
                         </div>
 
-                    </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Senha
+                            </label>
+
+                            <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Digite sua senha"
+                                required
+                                name="senha">
+
+                        </div>
 
 
+                        <!-- ASSINATURA -->
 
 
+                        <!--
+                        <div class="titulo-secao mt-4">
+                            Assinatura
+                        </div>
 
-                    <!-- BOTÃO -->
 
-                    <!--  <a
-                        href="pagamento.php"
-                        class="btn btn-primary w-100 py-2"
-                    >
-                        Cadastrar
-                    </a> -->
+                         <div class="mb-3">
 
-                    <button type="submit" class="btn btn-primary w-100 py-2" name="cadastrar">
-                        Cadastrar
-                    </button>
+                            <label class="form-label">
+                                Tipo de assinatura
+                            </label>
+
+                            <select
+                                class="form-select"
+                                name="plano"
+                                required>
+
+                                <option value="" selected disabled>
+                                    Escolha seu plano
+                                </option>
+
+                                <option value="mensal">
+                                    Mensal
+                                </option>
+
+                                <option value="anual">
+                                    Anual
+                                </option>
+
+                            </select>
+
+                        </div> -->
+
+
+                        <!-- BOTÃO -->
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100 py-2"
+                            name="cadastrar">
+
+                            Cadastrar
+
+                        </button>
+ <a
+                            href="index.php"
+                            class="btn btn-outline-secondary w-100 mt-2">
+                            Voltar
+                        </a>
+
                     </form>
 
                 </div>
@@ -294,5 +275,25 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
     </script>
 
+<script>
+    const cpf = document.getElementById("cpf");
 
+    cpf.addEventListener("input", function () {
+
+        let valor = cpf.value.replace(/\D/g, "");
+
+        if (valor.length > 11) {
+            valor = valor.substring(0, 11);
+        }
+
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+        valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+        cpf.value = valor;
+
+    });
+</script>
 </body>
+
+</html>

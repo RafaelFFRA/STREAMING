@@ -8,7 +8,9 @@
     <title>ORION TV - Pagamento</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
     <style>
         body {
@@ -125,7 +127,9 @@
                     </div>
 
 
-                    <form method="$_POST" action="assinatura.php">
+                    <!-- FORMULÁRIO -->
+
+                    <form method="POST" action="php/contratar_assinatura.php">
 
 
                         <!-- ESCOLHA DO PLANO -->
@@ -137,11 +141,14 @@
 
                         <div class="row g-3 mb-4">
 
+
                             <!-- PLANO MENSAL -->
 
                             <div class="col-md-6">
 
-                                <div class="plano plano-selecionado">
+                                <label
+                                    class="plano plano-selecionado w-100"
+                                    id="planoMensal">
 
                                     <div class="d-flex justify-content-between">
 
@@ -160,11 +167,10 @@
                                         <input
                                             type="radio"
                                             name="plano"
-                                            value="mensal"
+                                            value="Mensal"
                                             checked
-                                            require>
-
-                                        <!--  COMO COLOCAR O NAME? É RADIO -->
+                                            required
+                                            class="form-check-input plano-radio">
 
                                     </div>
 
@@ -176,7 +182,7 @@
                                         por mês
                                     </small>
 
-                                </div>
+                                </label>
 
                             </div>
 
@@ -185,7 +191,9 @@
 
                             <div class="col-md-6">
 
-                                <div class="plano">
+                                <label
+                                    class="plano w-100"
+                                    id="planoAnual">
 
                                     <div class="d-flex justify-content-between">
 
@@ -204,9 +212,8 @@
                                         <input
                                             type="radio"
                                             name="plano"
-                                            value="anual">
-
-                                        <!--  COMO COLOCAR O NAME? É RADIO -->
+                                            value="Anual"
+                                            class="form-check-input plano-radio">
 
                                     </div>
 
@@ -218,7 +225,7 @@
                                         por ano
                                     </small>
 
-                                </div>
+                                </label>
 
                             </div>
 
@@ -243,23 +250,26 @@
                                 name="forma_pagamento"
                                 required>
 
-                                <option selected disabled>
+                                <option
+                                    value=""
+                                    selected
+                                    disabled>
+
                                     Escolha uma forma de pagamento
+
                                 </option>
 
-                                <option value="pix">
+                                <option value="Pix">
                                     PIX
                                 </option>
 
-                                <option value="cartao">
+                                <option value="Cartão">
                                     Cartão de crédito
                                 </option>
 
-                                <option value="boleto">
+                                <option value="Boleto">
                                     Boleto
                                 </option>
-
-                                <!--  COMO COLOCAR O NAME? É OPTION -->
 
                             </select>
 
@@ -300,7 +310,10 @@
                                 class="form-control"
                                 placeholder="0000 0000 0000 0000"
                                 name="numero_cartao"
-                                required>
+                                id="numero_cartao"
+                                required
+                                maxlength="19"
+                                inputmode="numeric">
 
                         </div>
 
@@ -318,7 +331,10 @@
                                     class="form-control"
                                     placeholder="MM/AA"
                                     name="validade"
-                                    required>
+                                    id="validade"
+                                    required
+                                    maxlength="5"
+                                    inputmode="numeric">
 
                             </div>
 
@@ -334,7 +350,10 @@
                                     class="form-control"
                                     placeholder="000"
                                     name="cvv"
-                                    required>
+                                    id="cvv"
+                                    required
+                                    maxlength="3"
+                                    inputmode="numeric">
 
                             </div>
 
@@ -356,7 +375,7 @@
                                     Plano
                                 </span>
 
-                                <span>
+                                <span id="resumoPlano">
                                     Mensal
                                 </span>
 
@@ -369,7 +388,7 @@
                                     Valor
                                 </span>
 
-                                <span>
+                                <span id="resumoValor">
                                     R$ 19,90
                                 </span>
 
@@ -385,8 +404,12 @@
                                     Total
                                 </span>
 
-                                <span class="text-primary">
+                                <span
+                                    class="text-primary"
+                                    id="resumoTotal">
+
                                     R$ 19,90
+
                                 </span>
 
                             </div>
@@ -396,17 +419,22 @@
 
                         <!-- BOTÃO -->
 
-                        <a href="perfil.php" class="btn btn-primary w-100 py-2">
-                            Finalizar pagamento
-                        </a>
+                        <button
+                            class="btn btn-primary w-100 py-2"
+                            type="submit"
+                            name="finalizar_assinatura">
 
-                        <button class="btn btn-primary w-100 py-2" type="submit" name="finalizar_assinatura"></button>
+                            Finalizar pagamento
+
+                        </button>
 
 
                         <a
-                            href="cadastro.php"
+                            href="index.php"
                             class="btn btn-outline-secondary w-100 mt-2">
+
                             Voltar
+
                         </a>
 
 
@@ -421,6 +449,131 @@
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FORMATAÇÃO DOS CAMPOS -->
+
+    <script>
+
+        /*
+         * NÚMERO DO CARTÃO
+         * Aceita somente 16 números
+         * Formato: 0000 0000 0000 0000
+         */
+
+        const numeroCartao = document.getElementById("numero_cartao");
+
+        numeroCartao.addEventListener("input", function () {
+
+            let valor = this.value.replace(/\D/g, "");
+
+            valor = valor.substring(0, 16);
+
+            valor = valor.replace(/(\d{4})(?=\d)/g, "$1 ");
+
+            this.value = valor;
+
+        });
+
+
+        /*
+         * VALIDADE
+         * Aceita somente 4 números
+         * Formato: MM/AA
+         */
+
+        const validade = document.getElementById("validade");
+
+        validade.addEventListener("input", function () {
+
+            let valor = this.value.replace(/\D/g, "");
+
+            valor = valor.substring(0, 4);
+
+            if (valor.length > 2) {
+
+                valor = valor.substring(0, 2) + "/" + valor.substring(2);
+
+            }
+
+            this.value = valor;
+
+        });
+
+
+        /*
+         * CVV
+         * Aceita somente 3 números
+         */
+
+        const cvv = document.getElementById("cvv");
+
+        cvv.addEventListener("input", function () {
+
+            let valor = this.value.replace(/\D/g, "");
+
+            valor = valor.substring(0, 3);
+
+            this.value = valor;
+
+        });
+
+
+    </script>
+
+
+    <!-- ATUALIZAÇÃO DO RESUMO -->
+
+    <script>
+
+        const radios = document.querySelectorAll(".plano-radio");
+
+        const planoMensal = document.getElementById("planoMensal");
+        const planoAnual = document.getElementById("planoAnual");
+
+        const resumoPlano = document.getElementById("resumoPlano");
+        const resumoValor = document.getElementById("resumoValor");
+        const resumoTotal = document.getElementById("resumoTotal");
+
+
+        radios.forEach(function (radio) {
+
+            radio.addEventListener("change", function () {
+
+                planoMensal.classList.remove("plano-selecionado");
+                planoAnual.classList.remove("plano-selecionado");
+
+
+                if (this.value === "Mensal") {
+
+                    planoMensal.classList.add("plano-selecionado");
+
+                    resumoPlano.textContent = "Mensal";
+                    resumoValor.textContent = "R$ 19,90";
+                    resumoTotal.textContent = "R$ 19,90";
+
+                }
+
+
+                if (this.value === "Anual") {
+
+                    planoAnual.classList.add("plano-selecionado");
+
+                    resumoPlano.textContent = "Anual";
+                    resumoValor.textContent = "R$ 199,90";
+                    resumoTotal.textContent = "R$ 199,90";
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
 
 </body>
+
+</html>

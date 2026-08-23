@@ -116,6 +116,14 @@
 
         </select>
 
+         <a href="criar_contas_admin.php" class="btn-criar-conta">
+
+        <i class="bi bi-person-plus"></i>
+
+        Criar contas
+
+    </a>
+
     </div>
 
 

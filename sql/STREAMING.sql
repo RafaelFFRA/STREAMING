@@ -25,7 +25,7 @@ USE `streaming`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `senha` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Senha do usuário',
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'E-mail do usuário',
-  `aniversario` DATE CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Data de Nascimento do Usuário',
+  `aniversario` DATE  NOT NULL COMMENT 'Data de Nascimento do Usuário',
   `tipo_usuario` enum('Administrador','Distribuidor','Cliente') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Tipo de usuário: Administrador; Distribuidor e Cliente',
   `id_usuario` int NOT NULL AUTO_INCREMENT COMMENT 'ID identificador de usuário',
   PRIMARY KEY (`id_usuario`),
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `administrador` (
 
 -- Copiando dados para a tabela streaming.administrador: ~0 rows (aproximadamente)
 
-- Copiando estrutura para tabela streaming.cliente
+-- Copiando estrutura para tabela streaming.cliente
 
 CREATE TABLE IF NOT EXISTS `cliente` (
   `nome_cliente` varchar(100) NOT NULL COMMENT 'Nome do cliente',
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `distribuidor` (
 -- Copiando dados para a tabela streaming.distribuidor: ~0 rows (aproximadamente)
 
 
--
+
 
 -- Copiando estrutura para tabela streaming.conteudo
 CREATE TABLE IF NOT EXISTS `conteudo` (

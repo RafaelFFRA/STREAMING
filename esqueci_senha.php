@@ -30,13 +30,13 @@
             <h1>Esqueceu sua senha?</h1>
 
             <p class="descricao">
-                Digite o e-mail cadastrado na sua conta.
-                Enviaremos instruções para você redefinir sua senha.
+                Digite o e-mail cadastrado na sua conta e a nova senha.
+                
             </p>
 
 
             <!-- FORMULÁRIO -->
-            <form>
+            <form method="POST" action="php/esqueci_senha.php">
 
                 <div class="campo">
 
@@ -55,9 +55,26 @@
 
                 </div>
 
+                <div class="campo">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        class="form-control"
+                        placeholder="Digite a nova senha"
+                        required
+                        name="senha"
+                    >
+
+                </div>
+
 
                 <button type="submit" class="btn-enviar" name="instrucoes_esqueci_senha">
-                    Enviar instruções
+                    Enviar 
                 </button>
 
             </form>

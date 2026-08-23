@@ -1,57 +1,85 @@
 <?php
 
 session_start();
-require "conexao.php";
 
-$id_cliente = $_SESSION['id_cliente'];
-
-if (isset($_POST['enviar'])) { // name="enviar" do formulário
-
-$tipo_plano_assinatura = $_POST['tipo_plano']; //name = "" no formulário -- button no formulário, de duas opções
-$data_inicio_assinatura = $_POST['data_inicio'];
-$data_fim_assinatura = $_POST['data_fim'];
-$status_assinatura = $_POST['status'];
-$forma_pagamento_assinatura = $_POST['pagamento'];
+require_once(__DIR__ . "/../includes/alerta.php");
 
 
+/*
+ * Verifica se o formulário foi enviado
+ */
 
-$sql = "
-INSERT INTO assinatura(
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
-tipo_plano_assinatura,
-data_inicio_assinatura,
-data_fim_assinatura,
-status_assinatura,
-forma_pagamento_assinatura,
-FK_assinatura_id_cliente
+    header("Location: ../index.php");
 
-)
-
-VALUES(
-
-'$tipo_plano_assinatura',
-'$data_inicio_assinatura',
-'$data_fim_assinatura',
-'$status_assinatura',
-'$forma_pagamento_assinatura',
-'$id_cliente'
-
-)";
-
-
-
-if (mysqli_query($conn, $sql)) {
-
-    echo "Assinatura realizada com sucesso!";
-    //header("Location: index.php");
-
-} else {
-
-    echo "Erro ao cadastrar assinatura: " . mysqli_error($conn);
-
+    exit;
 }
 
 
+/*
+ * Recebe os dados da assinatura
+ */
+
+$plano = $_POST["plano"] ?? "";
+$forma_pagamento = $_POST["forma_pagamento"] ?? "";
+
+
+/*
+ * Verifica o plano
+ */
+
+if ($plano !== "Mensal" && $plano !== "Anual") {
+
+    mostrarAlerta(
+        "Plano inválido.",
+        "window.location.href = '../pagamento.php'"
+    );
+
+    exit;
 }
+
+
+/*
+ * Verifica a forma de pagamento
+ */
+
+if (
+    $forma_pagamento !== "Pix" &&
+    $forma_pagamento !== "Cartão" &&
+    $forma_pagamento !== "Boleto"
+) {
+
+    mostrarAlerta(
+        "Forma de pagamento inválida.",
+        "window.location.href = '../pagamento.php'"
+    );
+
+    exit;
+}
+
+
+/*
+ * Guarda os dados temporariamente na sessão.
+ *
+ * NADA é enviado para o banco neste momento.
+ */
+
+$_SESSION["cadastro_assinatura"] = [
+
+    "plano" => $plano,
+
+    "forma_pagamento" => $forma_pagamento
+
+];
+
+
+/*
+ * Vai para o cadastro do cliente
+ */
+
+header("Location: ../cadastro.php");
+
+exit;
 
 ?>

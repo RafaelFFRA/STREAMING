@@ -52,6 +52,10 @@
             border: 1px solid #0944e5;
         }
 
+        .form-control::placeholder {
+        color: #aaa;
+        }
+
         a {
             color: #e50914;
             text-decoration: none;
@@ -94,7 +98,7 @@
                         </p>
                     </div>
 
-                    <form method="POST" action="login.php">
+                    <form method="POST" action="php/login.php">
 
                         <div class="mb-3">
                             <label class="form-label">Email</label>
@@ -116,16 +120,16 @@
                                 name="senha">
                         </div>
 
-                        <div class="d-flex justify-content-between mb-4">
+                        <div class="d-flex justify-content-end mb-4">
 
-                            <div class="form-check">
+                           <!--  <div class="form-check">
                                 <input class="form-check-input" type="checkbox">
                                 <label class="form-check-label">
                                     Lembrar-me
                                 </label>
-                            </div>
+                            </div> -->
 
-                            <a href="esqueci_senha.php" class=text-primary>
+                            <a href="esqueci_senha.php" class="text-primary">
                                 Esqueceu a senha?
                             </a>
 
@@ -145,7 +149,7 @@
 
                         <p>
                             Não possui conta?
-                            <a href="cadastro.php" class=text-primary>Cadastre-se</a>
+                            <a href="pagamento.php" class="text-primary">Cadastre-se</a>
                         </p>
 
                     </div>

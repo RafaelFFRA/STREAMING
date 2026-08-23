@@ -23,6 +23,14 @@ body {
     min-height: 100vh;
 }
 
+.btn-criar-conta:hover {
+    background-color: #006dcc;
+
+    border-color: #006dcc;
+
+    color: white;
+}
+
 
 /* =========================
    NAVBAR
