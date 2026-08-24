@@ -9,62 +9,119 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            background: linear-gradient(135deg, #141414, #1f1f1f);
-            min-height: 100vh;
-        }
+<style>
 
-        .login-card {
-            width: 100%;
-            max-width: 420px;
-            background: #222;
-            border: none;
-            border-radius: 15px;
-            color: white;
-        }
+    body {
+        background-color: #080808;
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #e50914;
-        }
+        min-height: 100vh;
 
-        .btn-login {
-            background: #e50914;
-            border: none;
-        }
+        color: white;
 
-        .btn-login:hover {
-            background: #b20710;
-        }
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-        .form-control {
-            background: #333;
-            color: white;
-            border: none;
-        }
 
-        .form-control:focus {
-            background: #333;
-            color: white;
-            box-shadow: none;
-            border: 1px solid #0944e5;
-        }
+    .login-card {
 
-        .form-control::placeholder {
-        color: #aaa;
-        }
+        width: 100%;
 
-        a {
-            color: #e50914;
-            text-decoration: none;
-        }
+        max-width: 420px;
 
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+        background-color: #111111;
+
+        border: 1px solid #292929;
+
+        border-radius: 12px;
+
+        color: white;
+
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+    }
+
+
+    .logo {
+
+        font-size: 2rem;
+
+        font-weight: bold;
+
+        color: #168cff;
+
+        letter-spacing: 1px;
+    }
+
+
+    .btn-login {
+
+        background-color: #168cff;
+
+        border: none;
+
+        color: white;
+
+        border-radius: 6px;
+
+        transition: 0.3s;
+    }
+
+
+    .btn-login:hover {
+
+        background-color: #006dcc;
+
+        color: white;
+    }
+
+
+    .form-control {
+
+        background-color: #1b1b1b;
+
+        color: white;
+
+        border: 1px solid #333;
+
+        border-radius: 6px;
+    }
+
+
+    .form-control:focus {
+
+        background-color: #1b1b1b;
+
+        color: white;
+
+        box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
+
+        border: 1px solid #168cff;
+    }
+
+
+    .form-control::placeholder {
+
+        color: #777;
+    }
+
+
+    a {
+
+        color: #168cff;
+
+        text-decoration: none;
+
+        transition: 0.3s;
+    }
+
+
+    a:hover {
+
+        color: #5db2ff;
+
+        text-decoration: underline;
+    }
+
+</style>
 
 </head>
 

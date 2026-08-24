@@ -23,6 +23,7 @@ body {
     min-height: 100vh;
 }
 
+
 .btn-criar-conta:hover {
     background-color: #006dcc;
 
@@ -145,9 +146,9 @@ body {
 
     padding: 0 15px 0 43px;
 
-    background-color: #151515;
+    background-color: #1b1b1b;
 
-    border: 1px solid #2c2c2c;
+    border: 1px solid #333;
 
     border-radius: 7px;
 
@@ -163,7 +164,13 @@ body {
 
 
 .filtro-busca input:focus {
+    background-color: #1b1b1b;
+
+    color: white;
+
     border-color: #168cff;
+
+    box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
 }
 
 
@@ -174,9 +181,9 @@ body {
 
     padding: 0 15px;
 
-    background-color: #151515;
+    background-color: #1b1b1b;
 
-    border: 1px solid #2c2c2c;
+    border: 1px solid #333;
 
     border-radius: 7px;
 
@@ -187,7 +194,13 @@ body {
 
 
 .filtro-status:focus {
+    background-color: #1b1b1b;
+
+    color: white;
+
     border-color: #168cff;
+
+    box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
 }
 
 
@@ -200,7 +213,7 @@ body {
 
     min-height: 390px;
 
-    background-color: #151515;
+    background-color: #111111;
 
     border: 1px solid #292929;
 

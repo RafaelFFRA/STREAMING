@@ -1,3 +1,11 @@
+
+<?php
+
+require_once(__DIR__ . "/includes/proteger_cliente.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -20,6 +28,7 @@
 </head>
 
 <body>
+
 
     <!-- NAVBAR -->
 

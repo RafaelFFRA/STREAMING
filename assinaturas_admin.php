@@ -1,3 +1,10 @@
+<?php
+
+require_once(__DIR__ . "/includes/proteger_admin.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -43,7 +50,7 @@
             ORION TV
         </a>
 
-        <a href="tela_inicial.php" class="btn btn-outline-light btn-voltar">
+        <a href="tela_inicial_admin.php" class="btn btn-outline-light btn-voltar">
 
             <i class="bi bi-arrow-left"></i>
 

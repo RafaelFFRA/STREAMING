@@ -1,3 +1,11 @@
+<?php
+
+require_once(__DIR__ . "/includes/proteger_distribuidor.php");
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 

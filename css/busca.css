@@ -91,13 +91,24 @@ body {
     display: flex;
     align-items: center;
 
-    background-color: #171717;
+    background-color: #1b1b1b;
 
     border: 1px solid #333;
 
     border-radius: 8px;
 
     padding: 5px;
+
+    transition: 0.2s;
+}
+
+
+/* FOCO */
+
+.campo-busca:focus-within {
+    border-color: #168cff;
+
+    box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
 }
 
 
@@ -106,7 +117,7 @@ body {
 .icone-busca {
     font-size: 28px;
 
-    color: #999;
+    color: #777;
 
     padding: 0 12px;
 }
@@ -130,7 +141,7 @@ body {
 }
 
 .input-busca::placeholder {
-    color: #888;
+    color: #777;
 }
 
 

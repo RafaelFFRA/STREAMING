@@ -6,7 +6,11 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
 
 <div id="orionAlerta" class="orion-overlay">
 
-    <div class="orion-alerta">
+    <div
+        class="orion-alerta"
+        role="alertdialog"
+        aria-modal="true"
+    >
 
         <div class="orion-logo">
             ORION TV
@@ -31,69 +35,97 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
 
 <style>
 
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+
     .orion-overlay {
 
         position: fixed;
-        inset: 0;
+
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        width: 100vw;
+        min-height: 100vh;
 
         background: rgba(0, 0, 0, 0.75);
 
         display: flex;
+
         justify-content: center;
         align-items: center;
 
-        padding: 20px;
+        padding: 16px;
 
-        z-index: 9999;
+        z-index: 999999;
 
-        font-family: Arial, Helvetica, sans-serif;
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
     }
 
 
     .orion-alerta {
 
-        width: 100%;
-        max-width: 430px;
+        width: min(430px, 100%);
 
         background: #222;
 
-        border-radius: 15px;
+        border-radius: 16px;
 
-        padding: 30px;
+        padding: clamp(20px, 5vw, 30px);
 
         text-align: center;
 
         color: white;
 
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        box-shadow:
+            0 10px 40px
+            rgba(0, 0, 0, 0.5);
 
-        animation: orionEntrada 0.2s ease;
+        animation:
+            orionEntrada
+            0.2s
+            ease;
+
     }
 
 
     .orion-logo {
 
-        font-size: 1.8rem;
+        font-size:
+            clamp(1.5rem, 6vw, 1.8rem);
 
         font-weight: bold;
 
         color: #006dcc;
 
-        margin-bottom: 20px;
+        margin-bottom: 18px;
+
     }
 
 
     .orion-mensagem {
 
-        font-size: 1rem;
+        font-size:
+            clamp(0.95rem, 4vw, 1rem);
 
         color: #f1f1f1;
 
         line-height: 1.5;
 
-        margin-bottom: 25px;
+        margin-bottom: 24px;
 
-        word-break: break-word;
+        overflow-wrap: break-word;
+
     }
 
 
@@ -101,7 +133,9 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
 
         width: 100%;
 
-        padding: 10px 20px;
+        min-height: 44px;
+
+        padding: 12px 20px;
 
         border: none;
 
@@ -111,21 +145,36 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
 
         color: white;
 
-        font-size: 1rem;
+        font-size:
+            clamp(1rem, 4vw, 1.1rem);
 
         font-weight: 600;
 
-        font-family: Arial, Helvetica, sans-serif;
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
 
         cursor: pointer;
 
-        transition: background 0.2s;
+        transition:
+            background
+            0.2s;
+
     }
 
 
     .orion-botao:hover {
 
         background: #005aa3;
+
+    }
+
+
+    .orion-botao:active {
+
+        transform: scale(0.98);
+
     }
 
 
@@ -136,6 +185,7 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
             opacity: 0;
 
             transform: scale(0.95);
+
         }
 
         to {
@@ -143,30 +193,25 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
             opacity: 1;
 
             transform: scale(1);
+
         }
 
     }
 
 
-    @media (max-width: 576px) {
+    @media (max-width: 400px) {
+
+        .orion-overlay {
+
+            padding: 12px;
+
+        }
+
 
         .orion-alerta {
 
-            max-width: 100%;
+            border-radius: 14px;
 
-            padding: 25px 20px;
-        }
-
-
-        .orion-logo {
-
-            font-size: 1.6rem;
-        }
-
-
-        .orion-mensagem {
-
-            font-size: 0.95rem;
         }
 
     }
@@ -178,13 +223,16 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
 
     function fecharOrionAlerta() {
 
-        document.getElementById("orionAlerta").remove();
+        document
+            .getElementById("orionAlerta")
+            .remove();
 
         <?= $acao ?>;
 
     }
 
 </script>
+
 
 <?php
 

@@ -1,7 +1,24 @@
 <?php
 
+session_start();
+
 require_once("conexao.php");
 require_once(__DIR__ . "/../includes/alerta.php");
+
+/*
+ * SOMENTE ADMINISTRADOR PODE ACESSAR
+ */
+
+if (
+    !isset($_SESSION["id_usuario"]) ||
+    !isset($_SESSION["tipo_usuario"]) ||
+    $_SESSION["tipo_usuario"] !== "Administrador"
+) {
+
+    header("Location: ../index.php");
+
+    exit;
+}
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -9,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST["email"]);
     $senha = $_POST["senha"];
     $confirmar_senha = $_POST["confirmar_senha"];
-    $aniversario = $_POST["aniversario"];
+/*     $aniversario = $_POST["aniversario"]; */
     $tipo_usuario = $_POST["tipo_usuario"];
 
 

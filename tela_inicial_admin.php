@@ -1,3 +1,10 @@
+<?php
+
+require_once(__DIR__ . "/includes/proteger_admin.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
