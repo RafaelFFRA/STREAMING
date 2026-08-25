@@ -12,93 +12,94 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
-    <style>
-        body {
-            background: linear-gradient(135deg, #141414, #1f1f1f);
-            min-height: 100vh;
-            color: white;
-        }
+        <style>
+    body {
+        background-color: #080808;
+        min-height: 100vh;
+        color: white;
+    }
 
-        .pagamento-card {
-            background: #222;
-            border: none;
-            border-radius: 15px;
-            color: white;
-        }
+    .pagamento-card {
+        background-color: #111111;
+        border: 1px solid #292929;
+        border-radius: 15px;
+        color: white;
+    }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #0d6efd;
-        }
+    .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #168cff;
+    }
 
-        .titulo-secao {
-            color: #0d6efd;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-bottom: 1px solid #444;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
+    .titulo-secao {
+        color: #168cff;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-bottom: 1px solid #292929;
+        padding-bottom: 8px;
+        margin-bottom: 20px;
+    }
 
-        .form-control,
-        .form-select {
-            background: #333;
-            color: white;
-            border: none;
-        }
+    .form-control,
+    .form-select {
+        background-color: #1b1b1b;
+        color: white;
+        border: 1px solid #333;
+    }
 
-        .form-control:focus,
-        .form-select:focus {
-            background: #333;
-            color: white;
-            box-shadow: none;
-            border: 1px solid #0d6efd;
-        }
+    .form-control:focus,
+    .form-select:focus {
+        background-color: #1b1b1b;
+        color: white;
+        border-color: #168cff;
+        box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
+    }
 
-        .form-control::placeholder {
-            color: #aaa;
-        }
+    .form-control::placeholder {
+        color: #777;
+    }
 
-        .form-label {
-            color: #ddd;
-        }
+    .form-label {
+        color: #ddd;
+    }
 
-        .plano {
-            background: #333;
-            border: 1px solid #444;
-            border-radius: 10px;
-            padding: 18px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+    .plano {
+        background-color: #1b1b1b;
+        border: 1px solid #333;
+        border-radius: 10px;
+        padding: 18px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
 
-        .plano:hover {
-            border-color: #0d6efd;
-        }
+    .plano:hover {
+        border-color: #168cff;
+    }
 
-        .plano-selecionado {
-            border: 2px solid #0d6efd;
-        }
+    .plano-selecionado {
+        border: 2px solid #168cff;
+    }
 
-        .preco {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #0d6efd;
-        }
+    .preco {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #168cff;
+    }
 
-        .resumo {
-            background: #181818;
-            border-radius: 10px;
-            padding: 20px;
-        }
+    .resumo {
+        background-color: #1b1b1b;
+        border: 1px solid #333;
+        border-radius: 10px;
+        padding: 20px;
+    }
 
-        .linha-resumo {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-    </style>
+    .linha-resumo {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+</style>
 
 </head>
 

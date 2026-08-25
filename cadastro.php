@@ -13,58 +13,110 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
-    <style>
-        body {
-            background: linear-gradient(135deg, #141414, #1f1f1f);
-            min-height: 100vh;
-            color: white;
-        }
+        <style>
+    /* =========================
+       CONFIGURAÇÕES GERAIS
+    ========================= */
 
-        .cadastro-card {
-            background: #222;
-            border: none;
-            border-radius: 15px;
-            color: white;
-        }
+    body {
+        background-color: #080808;
+        min-height: 100vh;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #0d6efd;
-        }
 
-        .titulo-secao {
-            color: #0d6efd;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-bottom: 1px solid #444;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-        }
+    /* =========================
+       CARD
+    ========================= */
 
-        .form-control,
-        .form-select {
-            background: #333;
-            color: white;
-            border: none;
-        }
+    .cadastro-card {
+        background-color: #111111;
+        border: 1px solid #292929;
+        border-radius: 12px;
+        color: white;
 
-        .form-control:focus,
-        .form-select:focus {
-            background: #333;
-            color: white;
-            box-shadow: none;
-            border: 1px solid #0d6efd;
-        }
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+    }
 
-        .form-control::placeholder {
-            color: #aaa;
-        }
 
-        .form-label {
-            color: #ddd;
-        }
-    </style>
+    /* =========================
+       LOGO
+    ========================= */
+
+    .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #168cff;
+
+        letter-spacing: 1px;
+    }
+
+
+    /* =========================
+       TÍTULO DA SEÇÃO
+    ========================= */
+
+    .titulo-secao {
+        color: #168cff;
+
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        border-bottom: 1px solid #292929;
+
+        padding-bottom: 8px;
+        margin-bottom: 20px;
+    }
+
+
+    /* =========================
+       CAMPOS
+    ========================= */
+
+    .form-control,
+    .form-select {
+        background-color: #1b1b1b;
+        color: white;
+
+        border: 1px solid #333;
+    }
+
+
+    /* PLACEHOLDER */
+
+    .form-control::placeholder {
+        color: #777;
+    }
+
+
+    /* FOCO */
+
+    .form-control:focus,
+    .form-select:focus {
+        background-color: #1b1b1b;
+        color: white;
+
+        border-color: #168cff;
+
+        box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
+    }
+
+
+    /* OPÇÕES DO SELECT */
+
+    .form-select option {
+        background-color: #1b1b1b;
+        color: white;
+    }
+
+
+    /* LABEL */
+
+    .form-label {
+        color: #ddd;
+    }
+</style>
 
 </head>
 

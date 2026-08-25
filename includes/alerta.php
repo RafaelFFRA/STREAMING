@@ -35,61 +35,93 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
 
 <style>
 
-    *,
-    *::before,
-    *::after {
+    /* ================================
+       ORION TV - ALERTA
+       ================================ */
+
+    #orionAlerta,
+    #orionAlerta *,
+    #orionAlerta *::before,
+    #orionAlerta *::after {
         box-sizing: border-box;
     }
 
 
-    .orion-overlay {
+    /* ================================
+       TELA DO ALERTA
+       ================================ */
 
-        position: fixed;
+    #orionAlerta.orion-overlay {
 
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        position: fixed !important;
 
-        width: 100vw;
-        min-height: 100vh;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
 
-        background: rgba(0, 0, 0, 0.75);
+        width: 100% !important;
+        height: 100% !important;
 
-        display: flex;
+        margin: 0 !important;
 
-        justify-content: center;
-        align-items: center;
+        padding: 16px !important;
 
-        padding: 16px;
+        display: flex !important;
 
-        z-index: 999999;
+        justify-content: center !important;
+        align-items: center !important;
+
+        background: rgba(0, 0, 0, 0.75) !important;
+
+        z-index: 2147483647 !important;
 
         font-family:
             Arial,
             Helvetica,
-            sans-serif;
+            sans-serif !important;
+
+        font-size: 16px !important;
+
+        line-height: normal !important;
+
+        overflow: auto !important;
+
+        -webkit-text-size-adjust: 100%;
 
     }
 
 
-    .orion-alerta {
+    /* ================================
+       CAIXA
+       ================================ */
 
-        width: min(430px, 100%);
+    #orionAlerta .orion-alerta {
 
-        background: #222;
+        position: relative !important;
 
-        border-radius: 16px;
+        display: block !important;
 
-        padding: clamp(20px, 5vw, 30px);
+        width: 100% !important;
 
-        text-align: center;
+        max-width: 430px !important;
 
-        color: white;
+        min-width: 0 !important;
+
+        margin: 0 auto !important;
+
+        padding: 30px 24px !important;
+
+        background: #222 !important;
+
+        border-radius: 16px !important;
+
+        text-align: center !important;
+
+        color: #ffffff !important;
 
         box-shadow:
-            0 10px 40px
-            rgba(0, 0, 0, 0.5);
+            0 10px 40px rgba(0, 0, 0, 0.5) !important;
 
         animation:
             orionEntrada
@@ -99,84 +131,137 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
     }
 
 
-    .orion-logo {
+    /* ================================
+       LOGO
+       ================================ */
 
-        font-size:
-            clamp(1.5rem, 6vw, 1.8rem);
+    #orionAlerta .orion-logo {
 
-        font-weight: bold;
+        display: block !important;
 
-        color: #006dcc;
+        width: 100% !important;
 
-        margin-bottom: 18px;
-
-    }
-
-
-    .orion-mensagem {
-
-        font-size:
-            clamp(0.95rem, 4vw, 1rem);
-
-        color: #f1f1f1;
-
-        line-height: 1.5;
-
-        margin-bottom: 24px;
-
-        overflow-wrap: break-word;
-
-    }
-
-
-    .orion-botao {
-
-        width: 100%;
-
-        min-height: 44px;
-
-        padding: 12px 20px;
-
-        border: none;
-
-        border-radius: 8px;
-
-        background: #006dcc;
-
-        color: white;
-
-        font-size:
-            clamp(1rem, 4vw, 1.1rem);
-
-        font-weight: 600;
+        margin: 0 0 18px 0 !important;
+        padding: 0 !important;
 
         font-family:
             Arial,
             Helvetica,
-            sans-serif;
+            sans-serif !important;
+
+        font-size: 28px !important;
+
+        line-height: 1.2 !important;
+
+        font-weight: 700 !important;
+
+        color: #006dcc !important;
+
+    }
+
+
+    /* ================================
+       MENSAGEM
+       ================================ */
+
+    #orionAlerta .orion-mensagem {
+
+        display: block !important;
+
+        width: 100% !important;
+
+        margin: 0 0 24px 0 !important;
+        padding: 0 !important;
+
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif !important;
+
+        font-size: 18px !important;
+
+        line-height: 1.5 !important;
+
+        font-weight: 400 !important;
+
+        color: #f1f1f1 !important;
+
+        overflow-wrap: anywhere !important;
+
+        word-break: normal !important;
+
+    }
+
+
+    /* ================================
+       BOTÃO
+       ================================ */
+
+    #orionAlerta .orion-botao {
+
+        display: block !important;
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        min-height: 50px !important;
+
+        margin: 0 !important;
+
+        padding: 12px 20px !important;
+
+        border: none !important;
+
+        border-radius: 8px !important;
+
+        background: #006dcc !important;
+
+        color: #ffffff !important;
+
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif !important;
+
+        font-size: 18px !important;
+
+        line-height: 1.2 !important;
+
+        font-weight: 600 !important;
+
+        text-align: center !important;
 
         cursor: pointer;
 
+        -webkit-appearance: none;
+
+        appearance: none;
+
         transition:
-            background
-            0.2s;
+            background 0.2s ease,
+            transform 0.1s ease;
 
     }
 
 
-    .orion-botao:hover {
+    #orionAlerta .orion-botao:hover {
 
-        background: #005aa3;
+        background: #005aa3 !important;
 
     }
 
 
-    .orion-botao:active {
+    #orionAlerta .orion-botao:active {
 
         transform: scale(0.98);
 
     }
 
+
+    /* ================================
+       ANIMAÇÃO
+       ================================ */
 
     @keyframes orionEntrada {
 
@@ -199,18 +284,82 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
     }
 
 
+    /* ================================
+       CELULARES
+       ================================ */
+
     @media (max-width: 400px) {
 
-        .orion-overlay {
+        #orionAlerta.orion-overlay {
 
-            padding: 12px;
+            padding: 12px !important;
 
         }
 
+        #orionAlerta .orion-alerta {
 
-        .orion-alerta {
+            padding: 26px 20px !important;
 
-            border-radius: 14px;
+            border-radius: 14px !important;
+
+        }
+
+        #orionAlerta .orion-logo {
+
+            font-size: 26px !important;
+
+        }
+
+        #orionAlerta .orion-mensagem {
+
+            font-size: 17px !important;
+
+        }
+
+        #orionAlerta .orion-botao {
+
+            min-height: 50px !important;
+
+            font-size: 17px !important;
+
+        }
+
+    }
+
+
+    /* ================================
+       CELULARES MUITO PEQUENOS
+       ================================ */
+
+    @media (max-width: 320px) {
+
+        #orionAlerta.orion-overlay {
+
+            padding: 10px !important;
+
+        }
+
+        #orionAlerta .orion-alerta {
+
+            padding: 22px 16px !important;
+
+        }
+
+        #orionAlerta .orion-logo {
+
+            font-size: 24px !important;
+
+        }
+
+        #orionAlerta .orion-mensagem {
+
+            font-size: 16px !important;
+
+        }
+
+        #orionAlerta .orion-botao {
+
+            font-size: 16px !important;
 
         }
 
@@ -223,9 +372,13 @@ function mostrarAlerta($mensagem, $acao = "history.back()") {
 
     function fecharOrionAlerta() {
 
-        document
-            .getElementById("orionAlerta")
-            .remove();
+        const alerta = document.getElementById("orionAlerta");
+
+        if (alerta) {
+
+            alerta.remove();
+
+        }
 
         <?= $acao ?>;
 

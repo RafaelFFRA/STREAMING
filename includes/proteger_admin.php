@@ -17,3 +17,10 @@ if ($_SESSION["tipo_usuario"] !== "Administrador") {
 
     exit;
 }
+
+/* if ($_SESSION["tipo_usuario"] !== "Administrador") {
+
+    header("Location: /streaming/index.php");
+
+    exit;
+} */

@@ -17,3 +17,10 @@ if ($_SESSION["tipo_usuario"] !== "Distribuidor") {
 
     exit;
 }
+
+/* if ($_SESSION["tipo_usuario"] !== "Distribuidor") {
+
+    header("Location: ../index.php");
+
+    exit;
+} */
