@@ -2,7 +2,6 @@
 
 session_start();
 
-
 if (!isset($_SESSION["id_usuario"])) {
 
     header("Location: ../index.php");
@@ -10,8 +9,10 @@ if (!isset($_SESSION["id_usuario"])) {
     exit;
 }
 
-
-if ($_SESSION["tipo_usuario"] !== "Distribuidor") {
+if (
+    $_SESSION["tipo_usuario"] !== "Distribuidor" &&
+    $_SESSION["tipo_usuario"] !== "Administrador"
+) {
 
     header("Location: /streaming/index.php");
 
