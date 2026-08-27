@@ -105,7 +105,7 @@ if ($usuario["tipo_usuario"] === "Administrador") {
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
 
-    header("Location: ../tela_inicial_admin.php");
+    header("Location: ../escolha_admin.php");
     exit;
 
 }

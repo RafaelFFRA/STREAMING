@@ -1,4 +1,3 @@
-
 <?php
 
 require_once(__DIR__ . "/includes/proteger_cliente.php");
@@ -26,8 +25,27 @@ require_once(__DIR__ . "/includes/proteger_cliente.php");
     <link rel="stylesheet" href="css/tela_inicial.css">
 
 </head>
+<style>
+    .logout-btn {
+        color: #ff3b3b !important;
+        font-size: 22px !important;
+        margin-left: 12px !important;
+        padding-left: 8px !important;
+    }
+
+    .logout-btn i {
+        color: #ff3b3b !important;
+    }
+
+    .logout-btn:hover,
+    .logout-btn:hover i {
+        color: #ff0000 !important;
+    }
+</style>
 
 <body>
+
+
 
 
     <!-- NAVBAR -->
@@ -42,14 +60,14 @@ require_once(__DIR__ . "/includes/proteger_cliente.php");
             </a>
 
             <!-- MENU -->
-            <div class="navbar-nav menu-orion">
+            <!-- <div class="navbar-nav menu-orion">
 
                 <a class="nav-link" href="#">Em Alta</a>
                 <a class="nav-link" href="#">Filmes</a>
                 <a class="nav-link" href="#">Séries</a>
                 <a class="nav-link" href="#">Kids</a>
 
-            </div>
+            </div> -->
 
             <!-- BOTÕES -->
             <div class="nav-buttons">
@@ -60,6 +78,12 @@ require_once(__DIR__ . "/includes/proteger_cliente.php");
 
                 <a href="conta.php" class="btn btn-dark nav-icon">
                     <i class="bi bi-person-circle"></i>
+                </a>
+
+                <a href="index.php" class="logout-btn" title="Sair">
+
+                    <i class="bi bi-box-arrow-right"></i>
+
                 </a>
 
             </div>
@@ -73,11 +97,8 @@ require_once(__DIR__ . "/includes/proteger_cliente.php");
 
     <section class="banner">
 
-        <img
-            src="https://br.web.img3.acsta.net/c_640_360/img/bb/d5/bbd568870de0ab7e8f903696885d3801.png"
-            class="banner-img"
-            alt="Obsessão"
-        >
+        <img src="https://br.web.img3.acsta.net/c_640_360/img/bb/d5/bbd568870de0ab7e8f903696885d3801.png"
+            class="banner-img" alt="Obsessão">
 
         <div class="banner-info">
 
@@ -91,13 +112,13 @@ require_once(__DIR__ . "/includes/proteger_cliente.php");
 
                 <a href="filme.php">
                     <button class="btn btn-light btn-lg">
-                        ▶ Assistir
+                        <!-- ▶ --> Assistir
                     </button>
                 </a>
 
-                <button class="btn btn-secondary btn-lg">
+                <!-- <button class="btn btn-secondary btn-lg">
                     + Minha Lista
-                </button>
+                </button> -->
 
             </div>
 
@@ -115,16 +136,21 @@ require_once(__DIR__ . "/includes/proteger_cliente.php");
         <div class="lista-filmes">
 
             <a href="filme.php">
-                <img src="https://static.wikia.nocookie.net/dublagem/images/3/3c/I_Am_Not_Okay_With_This.png/revision/latest?cb=20260106013924&path-prefix=pt-br" alt="I Am Not Okay With This">
+                <img src="https://static.wikia.nocookie.net/dublagem/images/3/3c/I_Am_Not_Okay_With_This.png/revision/latest?cb=20260106013924&path-prefix=pt-br"
+                    alt="I Am Not Okay With This">
             </a>
 
-            <img src="https://a.ltrbxd.com/resized/film-poster/2/2/9/1/8/22918-pixote-0-600-0-900-crop.jpg?v=c69d3e271c" alt="Filme">
+            <img src="https://a.ltrbxd.com/resized/film-poster/2/2/9/1/8/22918-pixote-0-600-0-900-crop.jpg?v=c69d3e271c"
+                alt="Filme">
 
-            <img src="https://static.wikia.nocookie.net/dublagem/images/0/04/The_end_of_the_fucking_world_poster.jpg/revision/latest?cb=20200530041710&path-prefix=pt-br" alt="The End of the F***ing World">
+            <img src="https://static.wikia.nocookie.net/dublagem/images/0/04/The_end_of_the_fucking_world_poster.jpg/revision/latest?cb=20200530041710&path-prefix=pt-br"
+                alt="The End of the F***ing World">
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWMG6cn_5d9EriI8n_iNW3uhIRfqMUHsJmnRWnqnctT5Tj5M58ihwRurc&s=10" alt="Série">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWMG6cn_5d9EriI8n_iNW3uhIRfqMUHsJmnRWnqnctT5Tj5M58ihwRurc&s=10"
+                alt="Série">
 
-            <img src="https://static.wikia.nocookie.net/dublagem/images/e/e5/Obsessao.png/revision/latest?cb=20260518183806&path-prefix=pt-br" alt="Obsessão">
+            <img src="https://static.wikia.nocookie.net/dublagem/images/e/e5/Obsessao.png/revision/latest?cb=20260518183806&path-prefix=pt-br"
+                alt="Obsessão">
 
         </div>
 
@@ -139,15 +165,20 @@ require_once(__DIR__ . "/includes/proteger_cliente.php");
 
         <div class="lista-filmes">
 
-            <img src="https://a.ltrbxd.com/resized/film-poster/2/2/9/1/8/22918-pixote-0-600-0-900-crop.jpg?v=c69d3e271c" alt="Filme">
+            <img src="https://a.ltrbxd.com/resized/film-poster/2/2/9/1/8/22918-pixote-0-600-0-900-crop.jpg?v=c69d3e271c"
+                alt="Filme">
 
-            <img src="https://static.wikia.nocookie.net/dublagem/images/e/e5/Obsessao.png/revision/latest?cb=20260518183806&path-prefix=pt-br" alt="Obsessão">
+            <img src="https://static.wikia.nocookie.net/dublagem/images/e/e5/Obsessao.png/revision/latest?cb=20260518183806&path-prefix=pt-br"
+                alt="Obsessão">
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThdrDmxue3HrAW26LBPosNUloADC_IrMl-nZRP_tbnZ_E_T5T655DC2ys&s=10" alt="Filme">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThdrDmxue3HrAW26LBPosNUloADC_IrMl-nZRP_tbnZ_E_T5T655DC2ys&s=10"
+                alt="Filme">
 
-            <img src="https://upload.wikimedia.org/wikipedia/pt/3/3d/Scott_Pilgrim_vs._the_World.png" alt="Scott Pilgrim">
+            <img src="https://upload.wikimedia.org/wikipedia/pt/3/3d/Scott_Pilgrim_vs._the_World.png"
+                alt="Scott Pilgrim">
 
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgeNoVAwjIg5qa9RUnaiKlb1NKIJGE6enlzsDExl_IzMNvOyigrcmFCFFyvqf_myTJjS7Im-A-7tSWi3Vil3qOVfGA9VasnqQic1WxnSneX4UkSyTLQmRwJbtqdrzOC_Ypv-IHZIM3cKOE/w1200-h630-p-k-no-nu/rua+do+medo+parte+1+1994+critica+divulgantemorte.jpg" alt="Rua do Medo">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgeNoVAwjIg5qa9RUnaiKlb1NKIJGE6enlzsDExl_IzMNvOyigrcmFCFFyvqf_myTJjS7Im-A-7tSWi3Vil3qOVfGA9VasnqQic1WxnSneX4UkSyTLQmRwJbtqdrzOC_Ypv-IHZIM3cKOE/w1200-h630-p-k-no-nu/rua+do+medo+parte+1+1994+critica+divulgantemorte.jpg"
+                alt="Rua do Medo">
 
         </div>
 
@@ -162,13 +193,17 @@ require_once(__DIR__ . "/includes/proteger_cliente.php");
 
         <div class="lista-filmes">
 
-            <img src="https://static.wikia.nocookie.net/dublagem/images/3/3c/I_Am_Not_Okay_With_This.png/revision/latest?cb=20260106013924&path-prefix=pt-br" alt="I Am Not Okay With This">
+            <img src="https://static.wikia.nocookie.net/dublagem/images/3/3c/I_Am_Not_Okay_With_This.png/revision/latest?cb=20260106013924&path-prefix=pt-br"
+                alt="I Am Not Okay With This">
 
-            <img src="https://static.wikia.nocookie.net/dublagem/images/0/04/The_end_of_the_fucking_world_poster.jpg/revision/latest?cb=20200530041710&path-prefix=pt-br" alt="The End of the F***ing World">
+            <img src="https://static.wikia.nocookie.net/dublagem/images/0/04/The_end_of_the_fucking_world_poster.jpg/revision/latest?cb=20200530041710&path-prefix=pt-br"
+                alt="The End of the F***ing World">
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWMG6cn_5d9EriI8n_iNW3uhIRfqMUHsJmnRWnqnctT5Tj5M58ihwRurc&s=10" alt="Série">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWMG6cn_5d9EriI8n_iNW3uhIRfqMUHsJmnRWnqnctT5Tj5M58ihwRurc&s=10"
+                alt="Série">
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-TZbUbSdSw-TbmxLD6Q8bo_CzW_BkK6-Di_o19HtrRN8TyZ7ARmdjzOgp&s=10" alt="Série">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-TZbUbSdSw-TbmxLD6Q8bo_CzW_BkK6-Di_o19HtrRN8TyZ7ARmdjzOgp&s=10"
+                alt="Série">
 
             <img src="https://i.pinimg.com/564x/00/ea/7c/00ea7c88e9e80f8bea6d13f3f7f0a810.jpg" alt="Série">
 

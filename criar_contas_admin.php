@@ -447,7 +447,7 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
 
 
                         <a
-                            href="assinaturas_admin.php"
+                            href="ver_contas_usuarios.php"
                             class="btn btn-cancelar flex-sm-fill"
                         >
                             Cancelar

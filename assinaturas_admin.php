@@ -123,11 +123,18 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
 
         </select>
 
-         <a href="criar_contas_admin.php" class="btn-criar-conta">
+         <a href="ver_contas_usuarios.php" class="btn-criar-conta">
 
         <i class="bi bi-person-plus"></i>
 
-        Criar contas
+        Visualizar contas
+
+        
+
+       
+
+       
+
 
     </a>
 
