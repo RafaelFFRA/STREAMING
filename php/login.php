@@ -88,13 +88,13 @@ if ($senha_digitada !== $usuario["senha"]) {
 
 
 /*
- * CRIA A SESSÃO
+ * CRIA UMA NOVA SESSÃO PARA O USUÁRIO LOGADO
  */
 
+session_regenerate_id(true);
+
 $_SESSION["id_usuario"] = $usuario["id_usuario"];
-
 $_SESSION["tipo_usuario"] = $usuario["tipo_usuario"];
-
 
 /*
  * Redireciona conforme o tipo
@@ -145,3 +145,4 @@ session_destroy();
 mostrarAlerta("Tipo de usuário inválido.");
 
 exit;
+

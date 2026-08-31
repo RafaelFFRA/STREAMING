@@ -19,9 +19,9 @@ if (
     exit;
 }
 
-/* if ($_SESSION["tipo_usuario"] !== "Distribuidor") {
+/*  if ($_SESSION["tipo_usuario"] !== "Distribuidor") {
 
     header("Location: ../index.php");
 
     exit;
-} */
+}  */

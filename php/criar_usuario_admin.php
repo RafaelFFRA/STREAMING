@@ -5,6 +5,7 @@ session_start();
 require_once("conexao.php");
 require_once(__DIR__ . "/../includes/alerta.php");
 
+
 /*
  * SOMENTE ADMINISTRADOR PODE ACESSAR
  */
@@ -21,66 +22,493 @@ if (
 }
 
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+/*
+ * SOMENTE POST
+ */
 
-    $email = trim($_POST["email"]);
-    $senha = $_POST["senha"];
-    $confirmar_senha = $_POST["confirmar_senha"];
-/*     $aniversario = $_POST["aniversario"]; */
-    $tipo_usuario = $_POST["tipo_usuario"];
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
-
-    // Verifica se as senhas são iguais
-    if ($senha !== $confirmar_senha) {
-
-        
-          mostrarAlerta("As senhas não coincidem.");
+    header("Location: ../criar_contas_admin.php");
 
     exit;
-    
+}
 
-     
+
+/*
+ * ============================
+ * RECEBE OS DADOS
+ * ============================
+ */
+
+$email =
+    trim($_POST["email"] ?? "");
+
+$senha =
+    $_POST["senha"] ?? "";
+
+$confirmar_senha =
+    $_POST["confirmar_senha"] ?? "";
+
+$tipo_usuario =
+    $_POST["tipo_usuario"] ?? "";
+
+
+/*
+ * CAMPOS DO ADMINISTRADOR
+ */
+
+$nome_admin =
+    trim($_POST["nome_admin"] ?? "");
+
+
+/*
+ * CAMPOS DO DISTRIBUIDOR
+ */
+
+$empresa_distribuidor =
+    trim($_POST["empresa_distribuidor"] ?? "");
+
+$cnpj_empresa_distribuidor =
+    trim($_POST["cnpj_empresa_distribuidor"] ?? "");
+
+
+/*
+ * CAMPOS DO CLIENTE
+ */
+
+$nome_cliente =
+    trim($_POST["nome_cliente"] ?? "");
+
+$cpf_cliente =
+    trim($_POST["cpf_cliente"] ?? "");
+
+$status_conta_cliente =
+    $_POST["status_conta_cliente"] ?? "Ativo";
+
+
+/*
+ * ============================
+ * VALIDAÇÃO BÁSICA
+ * ============================
+ */
+
+if (
+    $email === "" ||
+    $senha === "" ||
+    $confirmar_senha === "" ||
+    $tipo_usuario === ""
+) {
+
+    mostrarAlerta(
+        "Preencha todos os campos obrigatórios."
+    );
+
+    exit;
+}
+
+
+/*
+ * ============================
+ * VERIFICA SENHAS
+ * ============================
+ */
+
+if ($senha !== $confirmar_senha) {
+
+    mostrarAlerta(
+        "As senhas não coincidem."
+    );
+
+    exit;
+}
+
+
+/*
+ * ============================
+ * TIPOS PERMITIDOS
+ * ============================
+ */
+
+$tiposPermitidos = [
+    "Administrador",
+    "Distribuidor",
+    "Cliente"
+];
+
+
+if (!in_array($tipo_usuario, $tiposPermitidos, true)) {
+
+    mostrarAlerta(
+        "Tipo de usuário inválido."
+    );
+
+    exit;
+}
+
+
+/*
+ * ============================
+ * ADMINISTRADOR
+ * ============================
+ */
+
+if ($tipo_usuario === "Administrador") {
+
+    if ($nome_admin === "") {
+
+        mostrarAlerta(
+            "Digite o nome do administrador."
+        );
+
+        exit;
     }
+}
 
 
-    // Verifica se o tipo de usuário é válido
+/*
+ * ============================
+ * DISTRIBUIDOR
+ * ============================
+ */
+
+if ($tipo_usuario === "Distribuidor") {
+
     if (
-        $tipo_usuario !== "Administrador" &&
-        $tipo_usuario !== "Distribuidor"
+        $empresa_distribuidor === "" ||
+        $cnpj_empresa_distribuidor === ""
     ) {
 
-         mostrarAlerta("Tipo de usuário inválido");
+        mostrarAlerta(
+            "Preencha o nome da empresa e o CNPJ."
+        );
 
         exit;
     }
 
 
-    // Verifica se o e-mail já existe
-    $sql_verificar = "SELECT id_usuario FROM usuario WHERE email = ?";
+    /*
+     * Remove caracteres do CNPJ
+     * para conferir a quantidade
+     * de dígitos.
+     */
 
-    $stmt = mysqli_prepare($conn, $sql_verificar);
+    $cnpjNumeros =
+        preg_replace(
+            "/\D/",
+            "",
+            $cnpj_empresa_distribuidor
+        );
+
+
+    if (strlen($cnpjNumeros) !== 14) {
+
+        mostrarAlerta(
+            "Digite um CNPJ válido."
+        );
+
+        exit;
+    }
+
+
+    /*
+     * Mantém o CNPJ formatado:
+     * 00.000.000/0000-00
+     */
+
+    $cnpj_empresa_distribuidor =
+        substr($cnpjNumeros, 0, 2) . "." .
+        substr($cnpjNumeros, 2, 3) . "." .
+        substr($cnpjNumeros, 5, 3) . "/" .
+        substr($cnpjNumeros, 8, 4) . "-" .
+        substr($cnpjNumeros, 12, 2);
+}
+
+
+/*
+ * ============================
+ * CLIENTE
+ * ============================
+ */
+
+if ($tipo_usuario === "Cliente") {
+
+    if (
+        $nome_cliente === "" ||
+        $cpf_cliente === ""
+    ) {
+
+        mostrarAlerta(
+            "Preencha o nome e o CPF do cliente."
+        );
+
+        exit;
+    }
+
+
+    /*
+     * Remove caracteres do CPF
+     */
+
+    $cpfNumeros =
+        preg_replace(
+            "/\D/",
+            "",
+            $cpf_cliente
+        );
+
+
+    if (strlen($cpfNumeros) !== 11) {
+
+        mostrarAlerta(
+            "Digite um CPF válido."
+        );
+
+        exit;
+    }
+
+
+    /*
+     * Mantém o CPF formatado:
+     * 000.000.000-00
+     */
+
+    $cpf_cliente =
+        substr($cpfNumeros, 0, 3) . "." .
+        substr($cpfNumeros, 3, 3) . "." .
+        substr($cpfNumeros, 6, 3) . "-" .
+        substr($cpfNumeros, 9, 2);
+
+
+    /*
+     * Verifica status
+     */
+
+    $statusPermitidos = [
+        "Ativo",
+        "Inativo",
+        "Suspenso"
+    ];
+
+
+    if (
+        !in_array(
+            $status_conta_cliente,
+            $statusPermitidos,
+            true
+        )
+    ) {
+
+        mostrarAlerta(
+            "Status de cliente inválido."
+        );
+
+        exit;
+    }
+}
+
+
+/*
+ * ============================
+ * VERIFICA E-MAIL
+ * ============================
+ */
+
+$sql_verificar = "
+    SELECT id_usuario
+    FROM usuario
+    WHERE email = ?
+";
+
+
+$stmt =
+    mysqli_prepare(
+        $conn,
+        $sql_verificar
+    );
+
+
+if (!$stmt) {
+
+    mostrarAlerta(
+        "Erro ao verificar o e-mail."
+    );
+
+    exit;
+}
+
+
+mysqli_stmt_bind_param(
+    $stmt,
+    "s",
+    $email
+);
+
+
+mysqli_stmt_execute($stmt);
+
+
+$resultado =
+    mysqli_stmt_get_result($stmt);
+
+
+if (mysqli_num_rows($resultado) > 0) {
+
+    mysqli_stmt_close($stmt);
+
+    mostrarAlerta(
+        "Este e-mail já possui uma conta."
+    );
+
+    exit;
+}
+
+
+mysqli_stmt_close($stmt);
+
+
+/*
+ * ============================
+ * VERIFICA CPF
+ * ============================
+ */
+
+if ($tipo_usuario === "Cliente") {
+
+    $sql_verificar = "
+        SELECT FK_cliente_id_cliente
+        FROM cliente
+        WHERE cpf_cliente = ?
+    ";
+
+
+    $stmt =
+        mysqli_prepare(
+            $conn,
+            $sql_verificar
+        );
+
+
+    if (!$stmt) {
+
+        mostrarAlerta(
+            "Erro ao verificar o CPF."
+        );
+
+        exit;
+    }
+
 
     mysqli_stmt_bind_param(
         $stmt,
         "s",
-        $email
+        $cpf_cliente
     );
+
 
     mysqli_stmt_execute($stmt);
 
-    $resultado = mysqli_stmt_get_result($stmt);
+
+    $resultado =
+        mysqli_stmt_get_result($stmt);
 
 
     if (mysqli_num_rows($resultado) > 0) {
 
-       mostrarAlerta("Este e-mail já possui uma conta.");
+        mysqli_stmt_close($stmt);
+
+        mostrarAlerta(
+            "Este CPF já está cadastrado."
+        );
 
         exit;
     }
 
 
-    // Insere o usuário no banco
-    $sql = "
+    mysqli_stmt_close($stmt);
+}
+
+
+/*
+ * ============================
+ * VERIFICA CNPJ
+ * ============================
+ */
+
+if ($tipo_usuario === "Distribuidor") {
+
+    $sql_verificar = "
+        SELECT id_distribuidor
+        FROM distribuidor
+        WHERE cnpj_empresa_distribuidor = ?
+    ";
+
+
+    $stmt =
+        mysqli_prepare(
+            $conn,
+            $sql_verificar
+        );
+
+
+    if (!$stmt) {
+
+        mostrarAlerta(
+            "Erro ao verificar o CNPJ."
+        );
+
+        exit;
+    }
+
+
+    mysqli_stmt_bind_param(
+        $stmt,
+        "s",
+        $cnpj_empresa_distribuidor
+    );
+
+
+    mysqli_stmt_execute($stmt);
+
+
+    $resultado =
+        mysqli_stmt_get_result($stmt);
+
+
+    if (mysqli_num_rows($resultado) > 0) {
+
+        mysqli_stmt_close($stmt);
+
+        mostrarAlerta(
+            "Este CNPJ já está cadastrado."
+        );
+
+        exit;
+    }
+
+
+    mysqli_stmt_close($stmt);
+}
+
+
+/*
+ * ============================
+ * INICIA TRANSAÇÃO
+ * ============================
+ */
+
+mysqli_begin_transaction($conn);
+
+
+try {
+
+
+    /*
+     * ============================
+     * CRIA USUÁRIO
+     * ============================
+     */
+
+    $sql_usuario = "
         INSERT INTO usuario
         (
             senha,
@@ -92,42 +520,306 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         (
             ?,
             ?,
-            ?,
+            NULL,
             ?
         )
     ";
 
 
-    $stmt = mysqli_prepare($conn, $sql);
+    $stmt =
+        mysqli_prepare(
+            $conn,
+            $sql_usuario
+        );
+
+
+    if (!$stmt) {
+
+        throw new Exception(
+            "Erro ao preparar criação do usuário."
+        );
+    }
+
 
     mysqli_stmt_bind_param(
         $stmt,
-        "ssss",
+        "sss",
         $senha,
         $email,
-        $aniversario,
         $tipo_usuario
     );
 
 
-    if (mysqli_stmt_execute($stmt)) {
+    if (!mysqli_stmt_execute($stmt)) {
 
-        mostrarAlerta("Conta criada com sucesso!");
-
-    } else {
-
-         mostrarAlerta("Erro ao criar conta.");
-
+        throw new Exception(
+            "Erro ao criar usuário: " .
+            mysqli_stmt_error($stmt)
+        );
     }
+
+
+    /*
+     * Obtém o ID gerado
+     */
+
+    $id_usuario =
+        mysqli_insert_id($conn);
 
 
     mysqli_stmt_close($stmt);
 
+
+    if (!$id_usuario) {
+
+        throw new Exception(
+            "Não foi possível obter o ID do usuário."
+        );
+    }
+
+
+    /*
+     * ============================
+     * ADMINISTRADOR
+     * ============================
+     */
+
+    if ($tipo_usuario === "Administrador") {
+
+
+        $sql_admin = "
+            INSERT INTO administrador
+            (
+                nome_admin,
+                FK_administrador_id_usuario
+            )
+            VALUES
+            (
+                ?,
+                ?
+            )
+        ";
+
+
+        $stmt =
+            mysqli_prepare(
+                $conn,
+                $sql_admin
+            );
+
+
+        if (!$stmt) {
+
+            throw new Exception(
+                "Erro ao preparar administrador: " .
+                mysqli_error($conn)
+            );
+        }
+
+
+        mysqli_stmt_bind_param(
+            $stmt,
+            "si",
+            $nome_admin,
+            $id_usuario
+        );
+
+
+        if (!mysqli_stmt_execute($stmt)) {
+
+            throw new Exception(
+                "Erro ao criar administrador: " .
+                mysqli_stmt_error($stmt)
+            );
+        }
+
+
+        mysqli_stmt_close($stmt);
+    }
+
+
+    /*
+     * ============================
+     * DISTRIBUIDOR
+     * ============================
+     */
+
+    elseif ($tipo_usuario === "Distribuidor") {
+
+
+        /*
+         * ATENÇÃO:
+         *
+         * A tabela atual NÃO possui mais:
+         *
+         * thumb_conteudo
+         * video_conteudo
+         *
+         * Portanto, eles NÃO entram
+         * neste INSERT.
+         */
+
+        $sql_distribuidor = "
+            INSERT INTO distribuidor
+            (
+                empresa_distribuidor,
+                cnpj_empresa_distribuidor,
+                FK_distribuidor_id_usuario
+            )
+            VALUES
+            (
+                ?,
+                ?,
+                ?
+            )
+        ";
+
+
+        $stmt =
+            mysqli_prepare(
+                $conn,
+                $sql_distribuidor
+            );
+
+
+        if (!$stmt) {
+
+            throw new Exception(
+                "Erro ao preparar distribuidor: " .
+                mysqli_error($conn)
+            );
+        }
+
+
+        mysqli_stmt_bind_param(
+            $stmt,
+            "ssi",
+            $empresa_distribuidor,
+            $cnpj_empresa_distribuidor,
+            $id_usuario
+        );
+
+
+        if (!mysqli_stmt_execute($stmt)) {
+
+            throw new Exception(
+                "Erro ao criar distribuidor: " .
+                mysqli_stmt_error($stmt)
+            );
+        }
+
+
+        mysqli_stmt_close($stmt);
+    }
+
+
+    /*
+     * ============================
+     * CLIENTE
+     * ============================
+     */
+
+    elseif ($tipo_usuario === "Cliente") {
+
+
+        $sql_cliente = "
+            INSERT INTO cliente
+            (
+                nome_cliente,
+                cpf_cliente,
+                status_conta_cliente,
+                FK_cliente_id_usuario
+            )
+            VALUES
+            (
+                ?,
+                ?,
+                ?,
+                ?
+            )
+        ";
+
+
+        $stmt =
+            mysqli_prepare(
+                $conn,
+                $sql_cliente
+            );
+
+
+        if (!$stmt) {
+
+            throw new Exception(
+                "Erro ao preparar cliente: " .
+                mysqli_error($conn)
+            );
+        }
+
+
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sssi",
+            $nome_cliente,
+            $cpf_cliente,
+            $status_conta_cliente,
+            $id_usuario
+        );
+
+
+        if (!mysqli_stmt_execute($stmt)) {
+
+            throw new Exception(
+                "Erro ao criar cliente: " .
+                mysqli_stmt_error($stmt)
+            );
+        }
+
+
+        mysqli_stmt_close($stmt);
+    }
+
+
+    /*
+     * ============================
+     * FINALIZA TRANSAÇÃO
+     * ============================
+     */
+
+    mysqli_commit($conn);
+
+
     mysqli_close($conn);
 
-} else {
 
-    header("Location: ../assinaturas_admin.php");
+    mostrarAlerta(
+        "Conta criada com sucesso!"
+    );
+
+    exit;
+
+
+} catch (Throwable $erro) {
+
+
+    /*
+     * Se alguma parte falhar,
+     * desfaz todos os INSERTs.
+     */
+
+    mysqli_rollback($conn);
+
+
+    $mensagem =
+        "Erro ao criar conta: " .
+        $erro->getMessage();
+
+
+    mysqli_close($conn);
+
+
+    mostrarAlerta(
+        $mensagem
+    );
 
     exit;
 }

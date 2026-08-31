@@ -80,7 +80,7 @@ require_once(__DIR__ . "/includes/proteger_cliente.php");
                     <i class="bi bi-person-circle"></i>
                 </a>
 
-                <a href="index.php" class="logout-btn" title="Sair">
+                <a href="/php/logout.php" class="logout-btn" title="Sair">
 
                     <i class="bi bi-box-arrow-right"></i>
 

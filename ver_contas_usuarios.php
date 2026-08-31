@@ -1,4 +1,3 @@
-
 <?php
 
 require_once(__DIR__ . "/php/conexao.php");
@@ -24,7 +23,9 @@ if (!in_array($filtro, $tiposPermitidos, true)) {
 
 
 /*
+ * ==========================================
  * EXCLUSÃO DE CONTA
+ * ==========================================
  */
 
 if (
@@ -50,7 +51,9 @@ if (
         exit;
     }
 
+
     mysqli_begin_transaction($conn);
+
 
     try {
 
@@ -64,9 +67,13 @@ if (
             WHERE id_usuario = ?
         ";
 
-        $stmt = mysqli_prepare($conn, $sql);
+        $stmt = mysqli_prepare(
+            $conn,
+            $sql
+        );
 
         if (!$stmt) {
+
             throw new Exception(
                 "Erro ao preparar a consulta."
             );
@@ -88,18 +95,23 @@ if (
 
         mysqli_stmt_close($stmt);
 
+
         if (!$usuario) {
+
             throw new Exception(
                 "Conta não encontrada."
             );
         }
+
 
         $tipoUsuario =
             $usuario["tipo_usuario"];
 
 
         /*
+         * ==========================================
          * EXCLUI CLIENTE
+         * ==========================================
          */
 
         if ($tipoUsuario === "Cliente") {
@@ -116,6 +128,7 @@ if (
             );
 
             if (!$stmt) {
+
                 throw new Exception(
                     "Erro ao buscar cliente."
                 );
@@ -136,6 +149,7 @@ if (
                 mysqli_fetch_assoc($resultadoCliente);
 
             mysqli_stmt_close($stmt);
+
 
             if ($cliente) {
 
@@ -158,6 +172,7 @@ if (
                 );
 
                 if (!$stmt) {
+
                     throw new Exception(
                         "Erro ao excluir avaliações do cliente."
                     );
@@ -169,7 +184,13 @@ if (
                     $id_cliente
                 );
 
-                mysqli_stmt_execute($stmt);
+                if (!mysqli_stmt_execute($stmt)) {
+
+                    throw new Exception(
+                        "Erro ao excluir avaliações do cliente."
+                    );
+                }
+
                 mysqli_stmt_close($stmt);
 
 
@@ -188,6 +209,7 @@ if (
                 );
 
                 if (!$stmt) {
+
                     throw new Exception(
                         "Erro ao excluir assinatura do cliente."
                     );
@@ -199,7 +221,13 @@ if (
                     $id_cliente
                 );
 
-                mysqli_stmt_execute($stmt);
+                if (!mysqli_stmt_execute($stmt)) {
+
+                    throw new Exception(
+                        "Erro ao excluir assinatura do cliente."
+                    );
+                }
+
                 mysqli_stmt_close($stmt);
 
 
@@ -218,6 +246,7 @@ if (
                 );
 
                 if (!$stmt) {
+
                     throw new Exception(
                         "Erro ao excluir cliente."
                     );
@@ -229,14 +258,22 @@ if (
                     $id_usuario
                 );
 
-                mysqli_stmt_execute($stmt);
+                if (!mysqli_stmt_execute($stmt)) {
+
+                    throw new Exception(
+                        "Erro ao excluir cliente."
+                    );
+                }
+
                 mysqli_stmt_close($stmt);
             }
         }
 
 
         /*
+         * ==========================================
          * EXCLUI ADMINISTRADOR
+         * ==========================================
          */
 
         elseif ($tipoUsuario === "Administrador") {
@@ -252,6 +289,7 @@ if (
             );
 
             if (!$stmt) {
+
                 throw new Exception(
                     "Erro ao excluir administrador."
                 );
@@ -263,13 +301,21 @@ if (
                 $id_usuario
             );
 
-            mysqli_stmt_execute($stmt);
+            if (!mysqli_stmt_execute($stmt)) {
+
+                throw new Exception(
+                    "Erro ao excluir administrador."
+                );
+            }
+
             mysqli_stmt_close($stmt);
         }
 
 
         /*
+         * ==========================================
          * EXCLUI DISTRIBUIDOR
+         * ==========================================
          */
 
         elseif ($tipoUsuario === "Distribuidor") {
@@ -286,6 +332,7 @@ if (
             );
 
             if (!$stmt) {
+
                 throw new Exception(
                     "Erro ao buscar distribuidor."
                 );
@@ -307,6 +354,7 @@ if (
 
             mysqli_stmt_close($stmt);
 
+
             if ($distribuidor) {
 
                 $id_distribuidor =
@@ -314,7 +362,7 @@ if (
 
 
                 /*
-                 * Busca conteúdos
+                 * Busca conteúdos do distribuidor
                  */
 
                 $sql = "
@@ -329,6 +377,7 @@ if (
                 );
 
                 if (!$stmt) {
+
                     throw new Exception(
                         "Erro ao buscar conteúdos."
                     );
@@ -345,6 +394,11 @@ if (
                 $resultadoConteudos =
                     mysqli_stmt_get_result($stmt);
 
+
+                /*
+                 * Exclui avaliações dos conteúdos
+                 */
+
                 while (
                     $conteudo =
                     mysqli_fetch_assoc($resultadoConteudos)
@@ -353,10 +407,6 @@ if (
                     $id_conteudo =
                         $conteudo["id_conteudo"];
 
-
-                    /*
-                     * Exclui avaliações do conteúdo
-                     */
 
                     $sqlAvaliacao = "
                         DELETE FROM avaliacao
@@ -370,6 +420,7 @@ if (
                         );
 
                     if (!$stmtAvaliacao) {
+
                         throw new Exception(
                             "Erro ao excluir avaliações."
                         );
@@ -381,9 +432,12 @@ if (
                         $id_conteudo
                     );
 
-                    mysqli_stmt_execute(
-                        $stmtAvaliacao
-                    );
+                    if (!mysqli_stmt_execute($stmtAvaliacao)) {
+
+                        throw new Exception(
+                            "Erro ao excluir avaliações."
+                        );
+                    }
 
                     mysqli_stmt_close(
                         $stmtAvaliacao
@@ -408,6 +462,7 @@ if (
                 );
 
                 if (!$stmt) {
+
                     throw new Exception(
                         "Erro ao excluir conteúdos."
                     );
@@ -419,7 +474,13 @@ if (
                     $id_distribuidor
                 );
 
-                mysqli_stmt_execute($stmt);
+                if (!mysqli_stmt_execute($stmt)) {
+
+                    throw new Exception(
+                        "Erro ao excluir conteúdos."
+                    );
+                }
+
                 mysqli_stmt_close($stmt);
 
 
@@ -438,6 +499,7 @@ if (
                 );
 
                 if (!$stmt) {
+
                     throw new Exception(
                         "Erro ao excluir distribuidor."
                     );
@@ -449,14 +511,22 @@ if (
                     $id_usuario
                 );
 
-                mysqli_stmt_execute($stmt);
+                if (!mysqli_stmt_execute($stmt)) {
+
+                    throw new Exception(
+                        "Erro ao excluir distribuidor."
+                    );
+                }
+
                 mysqli_stmt_close($stmt);
             }
         }
 
 
         /*
+         * ==========================================
          * EXCLUI USUÁRIO
+         * ==========================================
          */
 
         $sql = "
@@ -470,6 +540,7 @@ if (
         );
 
         if (!$stmt) {
+
             throw new Exception(
                 "Erro ao excluir usuário."
             );
@@ -481,20 +552,33 @@ if (
             $id_usuario
         );
 
-        mysqli_stmt_execute($stmt);
+        if (!mysqli_stmt_execute($stmt)) {
+
+            throw new Exception(
+                "Erro ao excluir usuário."
+            );
+        }
 
         $linhasAfetadas =
             mysqli_stmt_affected_rows($stmt);
 
         mysqli_stmt_close($stmt);
 
+
         if ($linhasAfetadas <= 0) {
+
             throw new Exception(
                 "Não foi possível excluir a conta."
             );
         }
 
+
+        /*
+         * Finaliza transação
+         */
+
         mysqli_commit($conn);
+
 
         header(
             "Location: ver_contas_usuarios.php?tipo=" .
@@ -504,9 +588,11 @@ if (
 
         exit;
 
+
     } catch (Throwable $erro) {
 
         mysqli_rollback($conn);
+
 
         header(
             "Location: ver_contas_usuarios.php?tipo=" .
@@ -521,7 +607,9 @@ if (
 
 
 /*
+ * ==========================================
  * CONSULTA DAS CONTAS
+ * ==========================================
  *
  * Administrador:
  *     administrador.nome_admin
@@ -541,18 +629,28 @@ $sql = "
         u.email,
         u.tipo_usuario,
 
-        COALESCE(
-            a.nome_admin,
-            d.empresa_distribuidor,
-            c.nome_cliente,
-            ''
-        ) AS nome,
+        CASE
+            WHEN u.tipo_usuario = 'Administrador'
+                THEN a.nome_admin
 
-        COALESCE(
-            d.cnpj_empresa_distribuidor,
-            c.cpf_cliente,
-            ''
-        ) AS cpf_cnpj
+            WHEN u.tipo_usuario = 'Distribuidor'
+                THEN d.empresa_distribuidor
+
+            WHEN u.tipo_usuario = 'Cliente'
+                THEN c.nome_cliente
+
+            ELSE ''
+        END AS nome,
+
+        CASE
+            WHEN u.tipo_usuario = 'Distribuidor'
+                THEN d.cnpj_empresa_distribuidor
+
+            WHEN u.tipo_usuario = 'Cliente'
+                THEN c.cpf_cliente
+
+            ELSE ''
+        END AS cpf_cnpj
 
     FROM usuario AS u
 
@@ -584,6 +682,7 @@ $stmt = mysqli_prepare(
     $conn,
     $sql
 );
+
 
 if (!$stmt) {
 
@@ -642,15 +741,18 @@ mysqli_stmt_close($stmt);
 
     <title>Ver Contas - ORION TV</title>
 
+
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
 
+
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     >
+
 
     <style>
 
@@ -660,6 +762,7 @@ mysqli_stmt_close($stmt);
             box-sizing: border-box;
         }
 
+
         body {
             background-color: #080808;
             min-height: 100vh;
@@ -667,456 +770,1026 @@ mysqli_stmt_close($stmt);
             font-family: Arial, Helvetica, sans-serif;
         }
 
+
+        /*
+         * ==========================================
+         * TOPO
+         * ==========================================
+         */
+
         .topo {
+
             width: 100%;
             min-height: 80px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             padding: 15px 5%;
+
             background-color: #080808;
+
             border-bottom: 1px solid #292929;
         }
 
+
         .logo {
+
             font-size: 28px;
             font-weight: bold;
+
             color: #168cff;
+
             letter-spacing: 1px;
+
             text-decoration: none;
         }
+
 
         .logo:hover {
             color: #168cff;
         }
 
+
         .botoes-topo {
+
             display: flex;
             align-items: center;
+
             gap: 10px;
         }
+
 
         .btn-voltar {
+
             text-decoration: none;
+
             color: white;
+
             background-color: #222;
+
             border: 1px solid #333;
+
             padding: 10px 20px;
+
             border-radius: 6px;
-        }
 
-        .btn-voltar:hover {
-            background-color: #333;
-            color: white;
-        }
-
-        .btn-criar {
-            text-decoration: none;
-            color: white;
-            background-color: #168cff;
-            padding: 10px 20px;
-            border-radius: 6px;
-        }
-
-        .btn-criar:hover {
-            background-color: #006dcc;
-            color: white;
-        }
-
-        .pagina-container {
-            width: 100%;
-            max-width: 1250px;
-            margin: 0 auto;
-            padding: 45px 20px 70px;
-        }
-
-        h1 {
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
-
-        .descricao {
-            color: #999;
-            margin-bottom: 30px;
-        }
-
-        .filtros {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .filtro {
-            text-decoration: none;
-            background-color: #1b1b1b;
-            border: 1px solid #333;
-            color: #ccc;
-            padding: 9px 18px;
-            border-radius: 6px;
             transition: 0.2s;
         }
 
-        .filtro:hover {
-            border-color: #168cff;
+
+        .btn-voltar:hover {
+
+            background-color: #333;
+
             color: white;
         }
+
+
+        .btn-criar {
+
+            text-decoration: none;
+
+            color: white;
+
+            background-color: #168cff;
+
+            padding: 10px 20px;
+
+            border-radius: 6px;
+
+            transition: 0.2s;
+        }
+
+
+        .btn-criar:hover {
+
+            background-color: #006dcc;
+
+            color: white;
+        }
+
+
+        /*
+         * ==========================================
+         * CONTEÚDO
+         * ==========================================
+         */
+
+        .pagina-container {
+
+            width: 100%;
+
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding: 45px 20px 70px;
+        }
+
+
+        h1 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .descricao {
+
+            color: #999;
+
+            margin-bottom: 30px;
+        }
+
+
+        /*
+         * ==========================================
+         * FILTROS
+         * ==========================================
+         */
+
+        .filtros {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .filtro {
+
+            text-decoration: none;
+
+            background-color: #1b1b1b;
+
+            border: 1px solid #333;
+
+            color: #ccc;
+
+            padding: 9px 18px;
+
+            border-radius: 6px;
+
+            transition: 0.2s;
+        }
+
+
+        .filtro:hover {
+
+            border-color: #168cff;
+
+            color: white;
+        }
+
 
         .filtro.ativo {
+
             background-color: #168cff;
+
             border-color: #168cff;
+
             color: white;
         }
 
+
+        /*
+         * ==========================================
+         * LISTA
+         * ==========================================
+         */
+
         .lista-card {
+
             background-color: #111;
+
             border: 1px solid #292929;
+
             border-radius: 12px;
+
             overflow: hidden;
         }
 
+
+        /*
+         * ==========================================
+         * TABELA
+         * ==========================================
+         */
+
         .tabela-container {
+
             width: 100%;
+
             overflow-x: auto;
         }
 
+
         .tabela-contas {
+
             width: 100%;
+
             border-collapse: collapse;
         }
 
+
         .tabela-contas th {
+
             background-color: #171717;
+
             color: #999;
+
             font-size: 13px;
+
             font-weight: normal;
+
             text-align: left;
+
             padding: 17px 20px;
+
             border-bottom: 1px solid #292929;
+
             white-space: nowrap;
         }
 
+
         .tabela-contas td {
+
             padding: 18px 20px;
+
             border-bottom: 1px solid #292929;
+
             font-size: 14px;
+
             vertical-align: middle;
         }
 
+
         .tabela-contas tbody tr:last-child td {
+
             border-bottom: none;
         }
 
+
         .tabela-contas tbody tr:hover {
+
             background-color: #171717;
         }
 
+
         .nome-usuario {
+
             font-weight: bold;
+
             color: #fff;
+
             min-width: 180px;
         }
+
 
         .coluna-email,
         .coluna-cpf-cnpj,
         .coluna-tipo,
         .coluna-acao {
+
             text-align: center !important;
         }
 
+
         .coluna-email {
+
             min-width: 220px;
         }
 
+
         .coluna-cpf-cnpj {
+
             min-width: 150px;
         }
 
+
         .coluna-tipo {
+
             min-width: 130px;
         }
 
+
         .coluna-acao {
+
             min-width: 110px;
         }
 
+
+        /*
+         * ==========================================
+         * TIPOS
+         * ==========================================
+         */
+
         .tipo {
+
             display: inline-block;
+
             padding: 5px 10px;
+
             border-radius: 20px;
+
             font-size: 12px;
+
             white-space: nowrap;
         }
 
+
         .tipo-administrador {
+
             background-color: rgba(22, 140, 255, 0.15);
+
             color: #5db2ff;
         }
 
+
         .tipo-distribuidor {
+
             background-color: rgba(130, 90, 255, 0.15);
+
             color: #b69cff;
         }
 
+
         .tipo-cliente {
+
             background-color: rgba(50, 200, 120, 0.12);
+
             color: #63d99a;
         }
 
+
+        /*
+         * ==========================================
+         * BOTÃO EXCLUIR
+         * ==========================================
+         */
+
         .btn-excluir {
+
             background-color: rgba(180, 40, 40, 0.12);
+
             border: 1px solid #4a2020;
+
             color: #ff7777;
+
             padding: 7px 12px;
+
             border-radius: 6px;
+
             cursor: pointer;
+
             white-space: nowrap;
+
             transition: 0.2s;
         }
 
+
         .btn-excluir:hover {
+
             background-color: #b52b2b;
+
             color: white;
         }
 
+
+        /*
+         * ==========================================
+         * SEM CONTAS
+         * ==========================================
+         */
+
         .sem-contas {
+
             text-align: center;
+
             padding: 70px 20px;
+
             color: #999;
         }
 
+
         .sem-contas i {
+
             display: block;
+
             font-size: 42px;
+
             color: #444;
+
             margin-bottom: 15px;
         }
 
+
         .sem-contas strong {
+
             display: block;
+
             color: #ccc;
+
             margin-bottom: 8px;
+
             font-size: 17px;
         }
 
 
         /*
-         * ================================
+         * ==========================================
          * CARDS MOBILE
-         * ================================
+         * ==========================================
          */
 
         .cards-mobile {
+
             display: none;
         }
 
+
         .conta-card {
+
             padding: 18px;
+
             border-bottom: 1px solid #292929;
         }
 
+
         .conta-card:last-child {
+
             border-bottom: none;
         }
 
+
         .conta-card-topo {
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 12px;
+
             margin-bottom: 18px;
         }
 
+
         .conta-card-nome {
+
             font-size: 16px;
+
             font-weight: bold;
+
             color: white;
+
             word-break: break-word;
         }
 
+
         .conta-card-id {
+
             color: #666;
+
             font-size: 12px;
+
             flex-shrink: 0;
         }
 
+
         .conta-info {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 12px;
         }
 
+
         .info-item {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 4px;
         }
 
+
         .info-label {
+
             color: #777;
+
             font-size: 11px;
+
             text-transform: uppercase;
+
             letter-spacing: 0.5px;
         }
 
+
         .info-valor {
+
             color: #ddd;
+
             font-size: 14px;
+
             word-break: break-word;
         }
 
+
         .conta-card-footer {
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 12px;
+
             margin-top: 18px;
         }
 
 
         /*
-         * ================================
+         * ==========================================
+         * MODAL DE EXCLUSÃO
+         * ==========================================
+         */
+
+        .modal-exclusao {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background-color: rgba(0, 0, 0, 0.78);
+
+            backdrop-filter: blur(4px);
+        }
+
+
+        .modal-exclusao.aberto {
+
+            display: flex;
+        }
+
+
+        .modal-caixa {
+
+            width: 100%;
+
+            max-width: 440px;
+
+            background-color: #111;
+
+            border: 1px solid #303030;
+
+            border-radius: 14px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.7);
+
+            animation: aparecerModal 0.18s ease-out;
+        }
+
+
+        @keyframes aparecerModal {
+
+            from {
+
+                opacity: 0;
+
+                transform: scale(0.96);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: scale(1);
+            }
+        }
+
+
+        .modal-icone {
+
+            width: 52px;
+
+            height: 52px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background-color: rgba(180, 40, 40, 0.14);
+
+            border: 1px solid #4a2020;
+
+            color: #ff6f6f;
+
+            font-size: 23px;
+        }
+
+
+        .modal-titulo {
+
+            text-align: center;
+
+            color: white;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+
+        .modal-texto {
+
+            text-align: center;
+
+            color: #999;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            margin-bottom: 22px;
+        }
+
+
+        .modal-conta {
+
+            background-color: #191919;
+
+            border: 1px solid #292929;
+
+            border-radius: 9px;
+
+            padding: 14px 15px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .modal-conta-nome {
+
+            color: white;
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+            margin-bottom: 6px;
+
+            word-break: break-word;
+        }
+
+
+        .modal-conta-info {
+
+            color: #888;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            word-break: break-word;
+        }
+
+
+        .modal-botoes {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .modal-btn {
+
+            flex: 1;
+
+            border: none;
+
+            border-radius: 7px;
+
+            padding: 11px 15px;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .modal-cancelar {
+
+            background-color: #242424;
+
+            border: 1px solid #333;
+
+            color: white;
+        }
+
+
+        .modal-cancelar:hover {
+
+            background-color: #333;
+        }
+
+
+        .modal-confirmar {
+
+            background-color: #b52b2b;
+
+            color: white;
+        }
+
+
+        .modal-confirmar:hover {
+
+            background-color: #d03636;
+        }
+
+
+        /*
+         * ==========================================
          * RESPONSIVIDADE
-         * ================================
+         * ==========================================
          */
 
         @media (max-width: 768px) {
 
             .topo {
+
                 min-height: 70px;
+
                 padding: 12px 4%;
             }
 
+
             .logo {
+
                 font-size: 22px;
             }
 
+
             .botoes-topo {
+
                 gap: 7px;
             }
+
 
             .btn-voltar,
             .btn-criar {
+
                 padding: 8px 10px;
+
                 font-size: 12px;
             }
 
-            .btn-criar i {
-                margin-right: 2px;
-            }
 
             .pagina-container {
+
                 padding: 28px 12px 50px;
             }
 
+
             h1 {
+
                 font-size: 24px;
             }
 
+
             .descricao {
+
                 font-size: 14px;
+
                 margin-bottom: 22px;
             }
 
+
             .filtros {
+
                 gap: 7px;
+
                 margin-bottom: 18px;
             }
 
+
             .filtro {
+
                 padding: 8px 12px;
+
                 font-size: 12px;
             }
 
+
             /*
-             * Esconde a tabela no celular
+             * Esconde tabela
              */
 
             .tabela-container {
+
                 display: none;
             }
 
+
             /*
-             * Mostra os cards
+             * Mostra cards
              */
 
             .cards-mobile {
+
                 display: block;
             }
 
+
             .lista-card {
+
                 border-radius: 10px;
             }
 
+
+            /*
+             * Modal
+             */
+
+            .modal-exclusao {
+
+                padding: 15px;
+            }
+
+
+            .modal-caixa {
+
+                max-width: 100%;
+
+                padding: 23px 18px;
+
+                border-radius: 12px;
+            }
+
+
+            .modal-titulo {
+
+                font-size: 19px;
+            }
+
+
+            .modal-texto {
+
+                font-size: 13px;
+            }
+
+
+            .modal-botoes {
+
+                flex-direction: column-reverse;
+            }
+
+
+            .modal-btn {
+
+                width: 100%;
+
+                padding: 12px;
+            }
         }
 
 
         @media (max-width: 480px) {
 
             .topo {
+
                 padding: 11px 3%;
             }
 
+
             .logo {
+
                 font-size: 20px;
             }
 
+
             .btn-voltar,
             .btn-criar {
+
                 padding: 7px 9px;
+
                 font-size: 11px;
             }
 
-            .btn-criar {
-                display: flex;
-                align-items: center;
-                gap: 3px;
-            }
 
             .pagina-container {
+
                 padding: 25px 10px 45px;
             }
 
+
             h1 {
+
                 font-size: 22px;
             }
 
+
             .descricao {
+
                 font-size: 13px;
             }
 
+
             .filtros {
+
                 display: grid;
+
                 grid-template-columns: 1fr 1fr;
             }
 
+
             .filtro {
+
                 text-align: center;
+
                 padding: 9px 5px;
             }
 
+
             .conta-card {
+
                 padding: 16px;
             }
 
+
             .conta-card-nome {
+
                 font-size: 15px;
             }
 
+
             .info-valor {
+
                 font-size: 13px;
             }
 
+
+            .modal-icone {
+
+                width: 48px;
+
+                height: 48px;
+
+                font-size: 21px;
+            }
         }
 
     </style>
 
 </head>
 
+
 <body>
 
 
+<!-- ==========================================
+     TOPO
+     ========================================== -->
+
 <header class="topo">
+
 
     <a
         href="tela_inicial_admin.php"
@@ -1127,6 +1800,7 @@ mysqli_stmt_close($stmt);
 
 
     <div class="botoes-topo">
+
 
         <a
             href="assinaturas_admin.php"
@@ -1140,14 +1814,23 @@ mysqli_stmt_close($stmt);
             href="criar_contas_admin.php"
             class="btn-criar"
         >
+
             <i class="bi bi-plus-lg"></i>
+
             Criar Contas
+
         </a>
+
 
     </div>
 
+
 </header>
 
+
+<!-- ==========================================
+     CONTEÚDO
+     ========================================== -->
 
 <main class="pagina-container">
 
@@ -1162,7 +1845,12 @@ mysqli_stmt_close($stmt);
     </p>
 
 
+    <!-- ==========================================
+         FILTROS
+         ========================================== -->
+
     <div class="filtros">
+
 
         <a
             href="ver_contas_usuarios.php?tipo=Todos"
@@ -1195,8 +1883,13 @@ mysqli_stmt_close($stmt);
             Clientes
         </a>
 
+
     </div>
 
+
+    <!-- ==========================================
+         LISTA
+         ========================================== -->
 
     <div class="lista-card">
 
@@ -1204,13 +1897,15 @@ mysqli_stmt_close($stmt);
         <?php if (!empty($contas)) { ?>
 
 
-            <!-- =================================
+            <!-- ==================================
                  TABELA DESKTOP
-                 ================================= -->
+                 ================================== -->
 
             <div class="tabela-container">
 
+
                 <table class="tabela-contas">
+
 
                     <thead>
 
@@ -1247,7 +1942,9 @@ mysqli_stmt_close($stmt);
 
                     <tbody>
 
+
                         <?php foreach ($contas as $conta) { ?>
+
 
                             <?php
 
@@ -1262,6 +1959,7 @@ mysqli_stmt_close($stmt);
 
                             $cpfCnpj =
                                 $conta["cpf_cnpj"] ?? "";
+
 
                             $classeTipo = "";
 
@@ -1282,25 +1980,57 @@ mysqli_stmt_close($stmt);
                                     "tipo-cliente";
                             }
 
+
+                            $nomeSeguro =
+                                htmlspecialchars(
+                                    $nome,
+                                    ENT_QUOTES,
+                                    "UTF-8"
+                                );
+
+
+                            $emailSeguro =
+                                htmlspecialchars(
+                                    $email,
+                                    ENT_QUOTES,
+                                    "UTF-8"
+                                );
+
+
+                            $tipoSeguro =
+                                htmlspecialchars(
+                                    $tipo,
+                                    ENT_QUOTES,
+                                    "UTF-8"
+                                );
+
+
+                            $cpfCnpjSeguro =
+                                htmlspecialchars(
+                                    $cpfCnpj,
+                                    ENT_QUOTES,
+                                    "UTF-8"
+                                );
+
                             ?>
+
 
                             <tr>
 
+
                                 <td>
+
                                     #<?php
                                     echo (int) $conta["id_usuario"];
                                     ?>
+
                                 </td>
 
 
                                 <td class="nome-usuario">
 
                                     <?php
-                                    echo htmlspecialchars(
-                                        $nome,
-                                        ENT_QUOTES,
-                                        "UTF-8"
-                                    );
+                                    echo $nomeSeguro;
                                     ?>
 
                                 </td>
@@ -1309,11 +2039,7 @@ mysqli_stmt_close($stmt);
                                 <td class="coluna-email">
 
                                     <?php
-                                    echo htmlspecialchars(
-                                        $email,
-                                        ENT_QUOTES,
-                                        "UTF-8"
-                                    );
+                                    echo $emailSeguro;
                                     ?>
 
                                 </td>
@@ -1322,11 +2048,7 @@ mysqli_stmt_close($stmt);
                                 <td class="coluna-cpf-cnpj">
 
                                     <?php
-                                    echo htmlspecialchars(
-                                        $cpfCnpj,
-                                        ENT_QUOTES,
-                                        "UTF-8"
-                                    );
+                                    echo $cpfCnpjSeguro;
                                     ?>
 
                                 </td>
@@ -1339,11 +2061,7 @@ mysqli_stmt_close($stmt);
                                     >
 
                                         <?php
-                                        echo htmlspecialchars(
-                                            $tipo,
-                                            ENT_QUOTES,
-                                            "UTF-8"
-                                        );
+                                        echo $tipoSeguro;
                                         ?>
 
                                     </span>
@@ -1353,10 +2071,13 @@ mysqli_stmt_close($stmt);
 
                                 <td class="coluna-acao">
 
+
                                     <form
                                         method="POST"
                                         action="ver_contas_usuarios.php?tipo=<?php echo urlencode($filtro); ?>"
+                                        class="form-exclusao"
                                     >
+
 
                                         <input
                                             type="hidden"
@@ -1364,11 +2085,21 @@ mysqli_stmt_close($stmt);
                                             value="<?php echo (int) $conta["id_usuario"]; ?>"
                                         >
 
-                                        <button
-                                            type="submit"
+
+                                        <input
+                                            type="hidden"
                                             name="excluir_conta"
                                             value="1"
+                                        >
+
+
+                                        <button
+                                            type="button"
                                             class="btn-excluir"
+                                            onclick="abrirModalExclusao(this)"
+                                            data-nome="<?php echo htmlspecialchars($nome, ENT_QUOTES, 'UTF-8'); ?>"
+                                            data-email="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>"
+                                            data-tipo="<?php echo htmlspecialchars($tipo, ENT_QUOTES, 'UTF-8'); ?>"
                                         >
 
                                             <i class="bi bi-trash3"></i>
@@ -1377,28 +2108,37 @@ mysqli_stmt_close($stmt);
 
                                         </button>
 
+
                                     </form>
+
 
                                 </td>
 
+
                             </tr>
+
 
                         <?php } ?>
 
+
                     </tbody>
 
+
                 </table>
+
 
             </div>
 
 
-            <!-- =================================
+            <!-- ==================================
                  CARDS MOBILE
-                 ================================= -->
+                 ================================== -->
 
             <div class="cards-mobile">
 
+
                 <?php foreach ($contas as $conta) { ?>
+
 
                     <?php
 
@@ -1413,6 +2153,7 @@ mysqli_stmt_close($stmt);
 
                     $cpfCnpj =
                         $conta["cpf_cnpj"] ?? "";
+
 
                     $classeTipo = "";
 
@@ -1435,10 +2176,12 @@ mysqli_stmt_close($stmt);
 
                     ?>
 
+
                     <div class="conta-card">
 
 
                         <div class="conta-card-topo">
+
 
                             <div class="conta-card-nome">
 
@@ -1461,6 +2204,7 @@ mysqli_stmt_close($stmt);
 
                             </div>
 
+
                         </div>
 
 
@@ -1472,6 +2216,7 @@ mysqli_stmt_close($stmt);
                                 <span class="info-label">
                                     Email
                                 </span>
+
 
                                 <span class="info-valor">
 
@@ -1490,9 +2235,12 @@ mysqli_stmt_close($stmt);
 
                             <div class="info-item">
 
+
                                 <span class="info-label">
 
+
                                     <?php
+
                                     echo $tipo === "Cliente"
                                         ? "CPF"
                                         : (
@@ -1500,9 +2248,12 @@ mysqli_stmt_close($stmt);
                                             ? "CNPJ"
                                             : "CPF/CNPJ"
                                         );
+
                                     ?>
 
+
                                 </span>
+
 
                                 <span class="info-valor">
 
@@ -1516,7 +2267,9 @@ mysqli_stmt_close($stmt);
 
                                 </span>
 
+
                             </div>
+
 
                         </div>
 
@@ -1542,7 +2295,9 @@ mysqli_stmt_close($stmt);
                             <form
                                 method="POST"
                                 action="ver_contas_usuarios.php?tipo=<?php echo urlencode($filtro); ?>"
+                                class="form-exclusao"
                             >
+
 
                                 <input
                                     type="hidden"
@@ -1550,11 +2305,21 @@ mysqli_stmt_close($stmt);
                                     value="<?php echo (int) $conta["id_usuario"]; ?>"
                                 >
 
-                                <button
-                                    type="submit"
+
+                                <input
+                                    type="hidden"
                                     name="excluir_conta"
                                     value="1"
+                                >
+
+
+                                <button
+                                    type="button"
                                     class="btn-excluir"
+                                    onclick="abrirModalExclusao(this)"
+                                    data-nome="<?php echo htmlspecialchars($nome, ENT_QUOTES, 'UTF-8'); ?>"
+                                    data-email="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>"
+                                    data-tipo="<?php echo htmlspecialchars($tipo, ENT_QUOTES, 'UTF-8'); ?>"
                                 >
 
                                     <i class="bi bi-trash3"></i>
@@ -1562,6 +2327,7 @@ mysqli_stmt_close($stmt);
                                     Excluir
 
                                 </button>
+
 
                             </form>
 
@@ -1571,7 +2337,9 @@ mysqli_stmt_close($stmt);
 
                     </div>
 
+
                 <?php } ?>
+
 
             </div>
 
@@ -1581,13 +2349,17 @@ mysqli_stmt_close($stmt);
 
             <div class="sem-contas">
 
+
                 <i class="bi bi-people"></i>
+
 
                 <strong>
                     Nenhuma conta encontrada
                 </strong>
 
+
                 <p>
+
 
                     <?php
 
@@ -1598,17 +2370,21 @@ mysqli_stmt_close($stmt);
                     } else {
 
                         echo "Não existe nenhuma conta do tipo " .
+
                             htmlspecialchars(
                                 $filtro,
                                 ENT_QUOTES,
                                 "UTF-8"
                             ) .
+
                             ".";
                     }
 
                     ?>
 
+
                 </p>
+
 
             </div>
 
@@ -1622,8 +2398,289 @@ mysqli_stmt_close($stmt);
 </main>
 
 
+<!-- ==========================================
+     MODAL DE CONFIRMAÇÃO
+     ========================================== -->
+
+<div
+    class="modal-exclusao"
+    id="modalExclusao"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitulo"
+>
+
+
+    <div class="modal-caixa">
+
+
+        <div class="modal-icone">
+
+            <i class="bi bi-trash3"></i>
+
+        </div>
+
+
+        <h2
+            class="modal-titulo"
+            id="modalTitulo"
+        >
+            Excluir conta?
+        </h2>
+
+
+        <p class="modal-texto">
+
+            Essa ação é permanente e não poderá ser desfeita.
+
+            <br>
+
+            Deseja realmente excluir esta conta?
+
+        </p>
+
+
+        <div class="modal-conta">
+
+
+            <div
+                class="modal-conta-nome"
+                id="modalNome"
+            >
+            </div>
+
+
+            <div
+                class="modal-conta-info"
+                id="modalEmail"
+            >
+            </div>
+
+
+            <div
+                class="modal-conta-info"
+                id="modalTipo"
+            >
+            </div>
+
+
+        </div>
+
+
+        <div class="modal-botoes">
+
+
+            <button
+                type="button"
+                class="modal-btn modal-cancelar"
+                onclick="fecharModalExclusao()"
+            >
+
+                Cancelar
+
+            </button>
+
+
+            <button
+                type="button"
+                class="modal-btn modal-confirmar"
+                onclick="confirmarExclusao()"
+            >
+
+                <i class="bi bi-trash3"></i>
+
+                Excluir conta
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- ==========================================
+     JAVASCRIPT
+     ========================================== -->
+
+<script>
+
+
+let formularioExclusaoAtual = null;
+
+
+/*
+ * ==========================================
+ * ABRIR MODAL
+ * ==========================================
+ */
+
+function abrirModalExclusao(botao) {
+
+
+    formularioExclusaoAtual =
+        botao.closest("form");
+
+
+    const nome =
+        botao.getAttribute("data-nome") || "";
+
+
+    const email =
+        botao.getAttribute("data-email") || "";
+
+
+    const tipo =
+        botao.getAttribute("data-tipo") || "";
+
+
+    document.getElementById("modalNome").textContent =
+        nome;
+
+
+    document.getElementById("modalEmail").textContent =
+        email;
+
+
+    document.getElementById("modalTipo").textContent =
+        "Tipo: " + tipo;
+
+
+    const modal =
+        document.getElementById("modalExclusao");
+
+
+    modal.classList.add("aberto");
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    /*
+     * Coloca foco no botão de cancelar
+     */
+
+    setTimeout(function () {
+
+        document
+            .querySelector(".modal-cancelar")
+            .focus();
+
+    }, 50);
+
+}
+
+
+/*
+ * ==========================================
+ * FECHAR MODAL
+ * ==========================================
+ */
+
+function fecharModalExclusao() {
+
+
+    const modal =
+        document.getElementById("modalExclusao");
+
+
+    modal.classList.remove("aberto");
+
+
+    document.body.style.overflow =
+        "";
+
+
+    formularioExclusaoAtual =
+        null;
+
+}
+
+
+/*
+ * ==========================================
+ * CONFIRMAR EXCLUSÃO
+ * ==========================================
+ */
+
+function confirmarExclusao() {
+
+
+    if (!formularioExclusaoAtual) {
+
+        return;
+    }
+
+
+    formularioExclusaoAtual.submit();
+
+}
+
+
+/*
+ * ==========================================
+ * CLICAR FORA DO MODAL
+ * ==========================================
+ */
+
+document
+    .getElementById("modalExclusao")
+    .addEventListener("click", function (evento) {
+
+
+        if (evento.target === this) {
+
+            fecharModalExclusao();
+
+        }
+
+    });
+
+
+/*
+ * ==========================================
+ * ESC FECHA O MODAL
+ * ==========================================
+ */
+
+document.addEventListener(
+    "keydown",
+    function (evento) {
+
+
+        if (
+            evento.key === "Escape"
+            &&
+            document
+                .getElementById("modalExclusao")
+                .classList
+                .contains("aberto")
+        ) {
+
+            fecharModalExclusao();
+
+        }
+
+    }
+);
+
+
+</script>
+
+
 <?php
 
+
+/*
+ * ==========================================
+ * ALERTA DE SUCESSO
+ * ==========================================
+ */
 
 if (
     isset($_GET["sucesso"])
@@ -1632,6 +2689,7 @@ if (
 ) {
 
 ?>
+
 
 <script>
 
@@ -1642,12 +2700,20 @@ if (
 
 </script>
 
+
 <?php
 
 }
 
 
+/*
+ * ==========================================
+ * ALERTA DE ERRO
+ * ==========================================
+ */
+
 if (isset($_GET["erro"])) {
+
 
     $mensagemErro =
         $_GET["erro"];
@@ -1659,7 +2725,9 @@ if (isset($_GET["erro"])) {
             "ID da conta inválido.";
     }
 
+
 ?>
+
 
 <script>
 
@@ -1677,6 +2745,7 @@ if (isset($_GET["erro"])) {
 
 </script>
 
+
 <?php
 
 }
@@ -1687,4 +2756,3 @@ if (isset($_GET["erro"])) {
 </body>
 
 </html>
-

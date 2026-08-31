@@ -1,4 +1,4 @@
-```php
+
 <?php
 
 require_once("conexao.php");
@@ -90,4 +90,4 @@ if (!$resultado) {
     </table>
 
 </div>
-```
+

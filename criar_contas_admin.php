@@ -1,3 +1,4 @@
+
 <?php
 
 require_once(__DIR__ . "/includes/proteger_admin.php");
@@ -11,171 +12,179 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Gerenciar Usuário - ORION TV</title>
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+        rel="stylesheet"
+    >
 
- <style>
+    <style>
 
-    body {
-        background-color: #080808;
+        body {
+            background-color: #080808;
+            min-height: 100vh;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-        min-height: 100vh;
-
-        color: white;
-
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-
-    .usuario-card {
-
-        width: 100%;
-
-        max-width: 600px;
-
-        background-color: #111111;
-
-        border: 1px solid #292929;
-
-        border-radius: 12px;
-
-        color: white;
-
-        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
-    }
-
-
-    .logo {
-
-        font-size: 2rem;
-
-        font-weight: bold;
-
-        color: #168cff;
-
-        letter-spacing: 1px;
-    }
-
-
-    .btn-orion {
-
-        background-color: #168cff;
-
-        border: none;
-
-        color: white;
-
-        transition: 0.3s;
-    }
-
-
-    .btn-orion:hover {
-
-        background-color: #006dcc;
-
-        color: white;
-    }
-
-
-    .btn-cancelar {
-
-        background-color: #242424;
-
-        border: none;
-
-        color: white;
-
-        transition: 0.3s;
-    }
-
-
-    .btn-cancelar:hover {
-
-        background-color: #333;
-
-        color: white;
-    }
-
-
-    .form-control,
-    .form-select {
-
-        background-color: #1b1b1b;
-
-        color: white;
-
-        border: 1px solid #333;
-
-        border-radius: 6px;
-    }
-
-
-    .form-control::placeholder {
-
-        color: #777;
-    }
-
-
-    .form-control:focus,
-    .form-select:focus {
-
-        background-color: #1b1b1b;
-
-        color: white;
-
-        box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
-
-        border: 1px solid #168cff;
-    }
-
-
-    .form-select option {
-
-        background-color: #1b1b1b;
-
-        color: white;
-    }
-
-
-    .form-label {
-
-        font-weight: 500;
-
-        color: #ddd;
-    }
-
-
-    /* Campos específicos */
-
-    .campo-tipo {
-
-        display: none;
-    }
-
-
-    @media (max-width: 576px) {
 
         .usuario-card {
 
-            padding: 1.5rem !important;
+            width: 100%;
+            max-width: 600px;
 
-            border-radius: 10px;
+            background-color: #111111;
+
+            border: 1px solid #292929;
+
+            border-radius: 12px;
+
+            color: white;
+
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
         }
 
 
         .logo {
 
-            font-size: 1.7rem;
+            font-size: 2rem;
+
+            font-weight: bold;
+
+            color: #168cff;
+
+            letter-spacing: 1px;
         }
 
-    }
 
-</style>
+        .btn-orion {
+
+            background-color: #168cff;
+
+            border: none;
+
+            color: white;
+
+            transition: 0.3s;
+        }
+
+
+        .btn-orion:hover {
+
+            background-color: #006dcc;
+
+            color: white;
+        }
+
+
+        .btn-cancelar {
+
+            background-color: #242424;
+
+            border: none;
+
+            color: white;
+
+            transition: 0.3s;
+        }
+
+
+        .btn-cancelar:hover {
+
+            background-color: #333;
+
+            color: white;
+        }
+
+
+        .form-control,
+        .form-select {
+
+            background-color: #1b1b1b;
+
+            color: white;
+
+            border: 1px solid #333;
+
+            border-radius: 6px;
+        }
+
+
+        .form-control::placeholder {
+
+            color: #777;
+        }
+
+
+        .form-control:focus,
+        .form-select:focus {
+
+            background-color: #1b1b1b;
+
+            color: white;
+
+            box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
+
+            border: 1px solid #168cff;
+        }
+
+
+        .form-select option {
+
+            background-color: #1b1b1b;
+
+            color: white;
+        }
+
+
+        .form-label {
+
+            font-weight: 500;
+
+            color: #ddd;
+        }
+
+
+        .campo-tipo {
+
+            display: none;
+        }
+
+
+        .texto-ajuda {
+
+            color: #777;
+
+            font-size: 12px;
+
+            margin-top: 5px;
+        }
+
+
+        @media (max-width: 576px) {
+
+            .usuario-card {
+
+                padding: 1.5rem !important;
+
+                border-radius: 10px;
+            }
+
+
+            .logo {
+
+                font-size: 1.7rem;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -252,12 +261,17 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
                                 Distribuidor
                             </option>
 
+
+                            <option value="Cliente">
+                                Cliente
+                            </option>
+
                         </select>
 
                     </div>
 
 
-                    <!-- NOME DO ADMINISTRADOR -->
+                    <!-- ================= ADMINISTRADOR ================= -->
 
                     <div
                         class="mb-3 campo-tipo"
@@ -284,7 +298,7 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
                     </div>
 
 
-                    <!-- EMPRESA DO DISTRIBUIDOR -->
+                    <!-- ================= DISTRIBUIDOR ================= -->
 
                     <div
                         class="mb-3 campo-tipo"
@@ -295,7 +309,7 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
                             for="empresa_distribuidor"
                             class="form-label"
                         >
-                            Empresa
+                            Nome da empresa
                         </label>
 
 
@@ -310,8 +324,6 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
 
                     </div>
 
-
-                    <!-- CNPJ DO DISTRIBUIDOR -->
 
                     <div
                         class="mb-3 campo-tipo"
@@ -338,7 +350,95 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
                     </div>
 
 
-                    <!-- EMAIL -->
+                    <!-- ================= CLIENTE ================= -->
+
+                    <div
+                        class="mb-3 campo-tipo"
+                        id="campo_cliente"
+                    >
+
+                        <label
+                            for="nome_cliente"
+                            class="form-label"
+                        >
+                            Nome do cliente
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="nome_cliente"
+                            name="nome_cliente"
+                            placeholder="Digite o nome do cliente"
+                            maxlength="100"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="mb-3 campo-tipo"
+                        id="campo_cpf"
+                    >
+
+                        <label
+                            for="cpf_cliente"
+                            class="form-label"
+                        >
+                            CPF
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="cpf_cliente"
+                            name="cpf_cliente"
+                            placeholder="000.000.000-00"
+                            maxlength="14"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="mb-3 campo-tipo"
+                        id="campo_status_cliente"
+                    >
+
+                        <label
+                            for="status_conta_cliente"
+                            class="form-label"
+                        >
+                            Status da conta
+                        </label>
+
+
+                        <select
+                            class="form-select"
+                            id="status_conta_cliente"
+                            name="status_conta_cliente"
+                        >
+
+                            <option value="Ativo" selected>
+                                Ativo
+                            </option>
+
+                            <option value="Inativo">
+                                Inativo
+                            </option>
+
+                            <option value="Suspenso">
+                                Suspenso
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ================= EMAIL ================= -->
 
                     <div class="mb-3">
 
@@ -356,13 +456,14 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
                             id="email"
                             name="email"
                             placeholder="Digite o email"
+                            maxlength="100"
                             required
                         >
 
                     </div>
 
 
-                    <!-- SENHA -->
+                    <!-- ================= SENHA ================= -->
 
                     <div class="mb-3">
 
@@ -386,7 +487,7 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
                     </div>
 
 
-                    <!-- CONFIRMAR SENHA -->
+                    <!-- ================= CONFIRMAR SENHA ================= -->
 
                     <div class="mb-3">
 
@@ -410,39 +511,18 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
                     </div>
 
 
-                    <!-- DATA DE NASCIMENTO -->
+                    <!-- ================= BOTÕES ================= -->
 
-                 <!--    <div class="mb-4">
-
-                        <label
-                            for="aniversario"
-                            class="form-label"
-                        >
-                            Data de nascimento
-                        </label>
-
-
-                        <input
-                            type="date"
-                            class="form-control"
-                            id="aniversario"
-                            name="aniversario"
-                            required
-                        >
-
-                    </div> -->
-
-
-                    <!-- BOTÕES -->
-
-                    <div class="d-grid gap-2 d-sm-flex">
+                    <div class="d-grid gap-2 d-sm-flex mt-4">
 
                         <button
                             type="submit"
                             name="salvar"
                             class="btn btn-orion flex-sm-fill"
                         >
+
                             Criar conta
+
                         </button>
 
 
@@ -450,7 +530,9 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
                             href="ver_contas_usuarios.php"
                             class="btn btn-cancelar flex-sm-fill"
                         >
+
                             Cancelar
+
                         </a>
 
                     </div>
@@ -469,15 +551,31 @@ require_once(__DIR__ . "/includes/proteger_admin.php");
 
 <script>
 
-const tipoUsuario = document.getElementById("tipo_usuario");
+/*
+ * ELEMENTOS
+ */
 
-const campoAdmin = document.getElementById("campo_admin");
+const tipoUsuario =
+    document.getElementById("tipo_usuario");
+
+
+const campoAdmin =
+    document.getElementById("campo_admin");
 
 const campoDistribuidor =
     document.getElementById("campo_distribuidor");
 
 const campoCnpj =
     document.getElementById("campo_cnpj");
+
+const campoCliente =
+    document.getElementById("campo_cliente");
+
+const campoCpf =
+    document.getElementById("campo_cpf");
+
+const campoStatusCliente =
+    document.getElementById("campo_status_cliente");
 
 
 const nomeAdmin =
@@ -489,11 +587,26 @@ const empresaDistribuidor =
 const cnpjDistribuidor =
     document.getElementById("cnpj_empresa_distribuidor");
 
+const nomeCliente =
+    document.getElementById("nome_cliente");
+
+const cpfCliente =
+    document.getElementById("cpf_cliente");
+
+const statusCliente =
+    document.getElementById("status_conta_cliente");
+
+
+/*
+ * ALTERAÇÃO DO TIPO
+ */
 
 tipoUsuario.addEventListener("change", function () {
 
 
-    /* Esconde todos */
+    /*
+     * Esconde todos os campos específicos
+     */
 
     campoAdmin.style.display = "none";
 
@@ -501,8 +614,16 @@ tipoUsuario.addEventListener("change", function () {
 
     campoCnpj.style.display = "none";
 
+    campoCliente.style.display = "none";
 
-    /* Remove required */
+    campoCpf.style.display = "none";
+
+    campoStatusCliente.style.display = "none";
+
+
+    /*
+     * Remove required
+     */
 
     nomeAdmin.required = false;
 
@@ -510,8 +631,14 @@ tipoUsuario.addEventListener("change", function () {
 
     cnpjDistribuidor.required = false;
 
+    nomeCliente.required = false;
 
-    /* ADMINISTRADOR */
+    cpfCliente.required = false;
+
+
+    /*
+     * ADMINISTRADOR
+     */
 
     if (this.value === "Administrador") {
 
@@ -522,9 +649,11 @@ tipoUsuario.addEventListener("change", function () {
     }
 
 
-    /* DISTRIBUIDOR */
+    /*
+     * DISTRIBUIDOR
+     */
 
-    if (this.value === "Distribuidor") {
+    else if (this.value === "Distribuidor") {
 
         campoDistribuidor.style.display = "block";
 
@@ -536,64 +665,133 @@ tipoUsuario.addEventListener("change", function () {
 
     }
 
+
+    /*
+     * CLIENTE
+     */
+
+    else if (this.value === "Cliente") {
+
+        campoCliente.style.display = "block";
+
+        campoCpf.style.display = "block";
+
+        campoStatusCliente.style.display = "block";
+
+        nomeCliente.required = true;
+
+        cpfCliente.required = true;
+
+    }
+
+});
+
+
+/*
+ * MÁSCARA CNPJ
+ */
+
+cnpjDistribuidor.addEventListener("input", function () {
+
+    let valor =
+        this.value.replace(/\D/g, "");
+
+    valor =
+        valor.substring(0, 14);
+
+
+    if (valor.length > 12) {
+
+        valor =
+            valor.replace(
+                /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
+                "$1.$2.$3/$4-$5"
+            );
+
+    }
+
+    else if (valor.length > 8) {
+
+        valor =
+            valor.replace(
+                /^(\d{2})(\d{3})(\d{3})(\d{1,4})$/,
+                "$1.$2.$3/$4"
+            );
+
+    }
+
+    else if (valor.length > 5) {
+
+        valor =
+            valor.replace(
+                /^(\d{2})(\d{3})(\d{1,3})$/,
+                "$1.$2.$3"
+            );
+
+    }
+
+    else if (valor.length > 2) {
+
+        valor =
+            valor.replace(
+                /^(\d{2})(\d{1,3})$/,
+                "$1.$2"
+            );
+
+    }
+
+
+    this.value = valor;
+
+});
+
+
+/*
+ * MÁSCARA CPF
+ */
+
+cpfCliente.addEventListener("input", function () {
+
+    let valor =
+        this.value.replace(/\D/g, "");
+
+    valor =
+        valor.substring(0, 11);
+
+
+    if (valor.length > 9) {
+
+        valor =
+            valor.replace(
+                /^(\d{3})(\d{3})(\d{3})(\d{1,2})$/,
+                "$1.$2.$3-$4"
+            );
+
+    }
+
+    else if (valor.length > 6) {
+
+        valor =
+            valor.replace(
+                /^(\d{3})(\d{3})(\d{1,3})$/,
+                "$1.$2.$3"
+            );
+
+    }
+
+    else if (valor.length > 3) {
+
+        valor =
+            valor.replace(
+                /^(\d{3})(\d{1,3})$/,
+                "$1.$2"
+            );
+
+    }
+
+
+    this.value = valor;
+
 });
 
 </script>
-
-
-<script>
-
-document
-    .getElementById("cnpj_empresa_distribuidor")
-    .addEventListener("input", function () {
-
-        let valor = this.value.replace(/\D/g, "");
-
-        valor = valor.substring(0, 14);
-
-
-        if (valor.length > 12) {
-
-            valor =
-                valor.replace(
-                    /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
-                    "$1.$2.$3/$4-$5"
-                );
-
-        } else if (valor.length > 8) {
-
-            valor =
-                valor.replace(
-                    /^(\d{2})(\d{3})(\d{3})(\d{1,4})$/,
-                    "$1.$2.$3/$4"
-                );
-
-        } else if (valor.length > 5) {
-
-            valor =
-                valor.replace(
-                    /^(\d{2})(\d{3})(\d{1,3})$/,
-                    "$1.$2.$3"
-                );
-
-        } else if (valor.length > 2) {
-
-            valor =
-                valor.replace(
-                    /^(\d{2})(\d{1,3})$/,
-                    "$1.$2"
-                );
-
-        }
-
-
-        this.value = valor;
-
-    });
-
-</script>
-
-
-</body>
-
-</html>

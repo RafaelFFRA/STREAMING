@@ -7,14 +7,14 @@ if (
     !isset($_SESSION["tipo_usuario"])
 ) {
 
-    header("Location: ../index.php");
+    header("Location: /streaming/index.php");
 
     exit;
 }
 
 if ($_SESSION["tipo_usuario"] !== "Administrador") {
 
-    header("Location: ../index.php");
+    header("Location: /streaming/index.php");
 
     exit;
 }
